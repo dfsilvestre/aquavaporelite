@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 132" width="520" height="132" role="img" aria-label="AQUA VAPOR ELITE">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EEF1F4"/><stop offset=".5" stop-color="#C9CDD3"/><stop offset="1" stop-color="#A2A8B0"/>
+    </linearGradient>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;display=swap');
+      .wm{font-family:'Cinzel','Trajan Pro',Georgia,serif}</style>
+  </defs>
+  <g transform="translate(24,22)">
+    <g fill="none" stroke="url(#s)" stroke-width="6.6" stroke-linejoin="miter">
+      <path d="M47 9 L30 40 M47 9 L64 40"/><path d="M31 45 L47 74 L63 45"/>
+    </g>
+    <rect x="38.5" y="40.3" width="17" height="2.8" fill="url(#s)"/>
+  </g>
+  <line x1="104" y1="30" x2="104" y2="102" stroke="#3a4a63" stroke-width="1"/>
+  <text class="wm" x="126" y="60" font-weight="600" font-size="30" letter-spacing="3.2" fill="url(#s)">AQUA VAPOR</text>
+  <text class="wm" x="127" y="95" font-weight="500" font-size="17.5" letter-spacing="12" fill="#9aa6b5">ELITE</text>
+</svg>

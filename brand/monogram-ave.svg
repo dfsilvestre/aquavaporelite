@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120" role="img" aria-label="AVE">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EEF1F4"/><stop offset=".5" stop-color="#C9CDD3"/><stop offset="1" stop-color="#A2A8B0"/>
+    </linearGradient>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&amp;display=swap');
+      .wm{font-family:'Cinzel','Trajan Pro',Georgia,serif}</style>
+  </defs>
+  <text class="wm" x="120" y="92" text-anchor="middle" font-weight="600" font-size="98" letter-spacing="-7" fill="url(#s)">AVE</text>
+</svg>

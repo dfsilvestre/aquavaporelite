@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300" role="img" aria-label="AQUA VAPOR ELITE">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EEF1F4"/><stop offset=".5" stop-color="#C9CDD3"/><stop offset="1" stop-color="#A2A8B0"/>
+    </linearGradient>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;display=swap');
+      .wm{font-family:'Cinzel','Trajan Pro',Georgia,serif}</style>
+  </defs>
+  <g transform="translate(150,96) scale(0.95) translate(-50,-50)">
+    <g fill="none" stroke="url(#s)" stroke-width="7.5" stroke-linejoin="miter">
+      <path d="M50 13 L30 49 M50 13 L70 49"/><path d="M31 55 L50 88 L69 55"/>
+    </g>
+    <rect x="40" y="49.4" width="20" height="3.2" fill="url(#s)"/>
+  </g>
+  <line x1="120" y1="196" x2="180" y2="196" stroke="#3a4a63" stroke-width="1"/>
+  <text class="wm" x="150" y="232" text-anchor="middle" font-weight="600" font-size="31" letter-spacing="3.4" fill="url(#s)">AQUA VAPOR</text>
+  <text class="wm" x="150" y="264" text-anchor="middle" font-weight="500" font-size="16" letter-spacing="13" fill="#9aa6b5">ELITE</text>
+</svg>

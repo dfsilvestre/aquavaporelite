@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="AQUA VAPOR ELITE — emblème">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EEF1F4"/><stop offset=".5" stop-color="#C9CDD3"/><stop offset="1" stop-color="#A2A8B0"/>
+    </linearGradient>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&amp;display=swap');
+      .wm{font-family:'Cinzel','Trajan Pro',Georgia,serif}</style>
+    <path id="arcTop" d="M28 100 a72 72 0 0 1 144 0"/>
+    <path id="arcBot" d="M30 100 a70 70 0 0 0 140 0"/>
+  </defs>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="url(#s)" stroke-width="1.4"/>
+  <circle cx="100" cy="100" r="84" fill="none" stroke="url(#s)" stroke-width="2.4"/>
+  <text class="wm" font-weight="600" font-size="17" letter-spacing="3.5" fill="url(#s)">
+    <textPath href="#arcTop" startOffset="50%" text-anchor="middle">AQUA VAPOR</textPath></text>
+  <text class="wm" font-weight="500" font-size="14" letter-spacing="7" fill="url(#s)">
+    <textPath href="#arcBot" startOffset="50%" text-anchor="middle">ELITE</textPath></text>
+  <g transform="translate(100,100) scale(0.62) translate(-50,-50)">
+    <g fill="none" stroke="url(#s)" stroke-width="7.5" stroke-linejoin="miter">
+      <path d="M50 24 L33 52 M50 24 L67 52"/><path d="M34 57 L50 84 L66 57"/>
+    </g>
+    <rect x="41" y="52.4" width="18" height="3" fill="url(#s)"/>
+  </g>
+  <circle cx="34" cy="100" r="2.2" fill="url(#s)"/>
+  <circle cx="166" cy="100" r="2.2" fill="url(#s)"/>
+</svg>
