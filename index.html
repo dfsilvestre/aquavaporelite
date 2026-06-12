@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <meta name="theme-color" content="#050608" />
   <script>document.documentElement.classList.add('js');</script>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Cinzel:wght@500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <!-- LCP : l'image héro (fond + poster vidéo) est préchargée en priorité haute -->
   <link rel="preload" as="image" href="./assets/hero-detailing-luxe.webp" fetchpriority="high" />
   <!-- FAQ : schema aligné sur la FAQ visible de la page -->
@@ -2450,6 +2450,10 @@
       --hairline:     rgba(150, 178, 210, 0.20);
       /* argent brossé pour titres & monogramme */
       --metal-grad: linear-gradient(177deg, #F4F8FF 0%, #C9D7E9 36%, #91A8C0 52%, #DCE7F3 68%, #A7BCD2 100%);
+      /* or — variantes d'intensité */
+      --gold-dim:  rgba(196, 162, 74, 0.12);
+      --gold-line: rgba(196, 162, 74, 0.28);
+      --gold-grad: linear-gradient(90deg, transparent, rgba(196,162,74,0.45), transparent);
     }
 
     /* Texte sélectionné, raffiné */
@@ -3343,6 +3347,51 @@
       .hero-title { font-size: clamp(1.15rem, 5.6vw, 1.38rem) !important; line-height: 1.14 !important; }
     }
 
+    /* ── Hero mobile — traitement luxe Porsche/Bentley ── */
+    @media (max-width: 430px) {
+      .hero-badge {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        gap: 10px !important;
+        letter-spacing: 0.22em !important;
+        opacity: 0.65 !important;
+      }
+      .hero-badge-dot {
+        width: 18px !important;
+        height: 1px !important;
+        background: rgba(255,255,255,0.45) !important;
+        border-radius: 0 !important;
+        animation: none !important;
+      }
+      .hero-title {
+        letter-spacing: -0.04em !important;
+        line-height: 1.06 !important;
+        text-shadow: 0 2px 40px rgba(0,0,0,0.98), 0 0 80px rgba(0,0,0,0.70) !important;
+      }
+      .hero-domain {
+        background: transparent !important;
+        border-color: rgba(255,255,255,0.14) !important;
+        letter-spacing: 0.16em !important;
+        color: rgba(220,232,245,0.72) !important;
+      }
+      .hero-actions .btn-primary {
+        background: transparent !important;
+        border: 1px solid rgba(255,255,255,0.38) !important;
+        color: #fff !important;
+        letter-spacing: 0.16em !important;
+        box-shadow: none !important;
+        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+      }
+      .hero-actions .btn-primary svg { display: none !important; }
+      .hero-actions .btn-ghost {
+        border-color: rgba(255,255,255,0.10) !important;
+        color: rgba(255,255,255,0.42) !important;
+        letter-spacing: 0.16em !important;
+      }
+    }
+
     /* ── City Band ── */
     .city-band {
       padding: 28px 0;
@@ -3353,10 +3402,9 @@
     }
     .city-band-inner {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
+      gap: 12px;
     }
     .city-band-label {
       font-size: 0.6rem;
@@ -3364,8 +3412,25 @@
       text-transform: uppercase;
       color: var(--text-muted);
       opacity: 0.45;
-      margin-right: 28px;
       white-space: nowrap;
+    }
+    .city-band-cities {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0 24px;
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: flex-start;
+    }
+    .city-band-cities::-webkit-scrollbar { display: none; }
+    /* On large screens, center the cities row */
+    @media (min-width: 900px) {
+      .city-band-cities { justify-content: center; overflow-x: visible; }
     }
     .city-band-name {
       font-size: 0.72rem;
@@ -3508,6 +3573,92 @@
     .pricing-card--elite .pricing-cta--elite:hover {
       background: rgba(201,165,87,0.1);
     }
+
+    /* ── Luxury upgrade — Porsche/Bentley tier ── */
+
+    /* Stats strip : chiffres en or (atelier > startup) */
+    .stat-value { color: var(--gold) !important; }
+
+    /* Trust bar hero : valeurs en or subtil */
+    .trust-value { color: var(--gold) !important; }
+
+    /* Featured pricing card : filet supérieur doré */
+    .pricing-card--featured::before {
+      background: var(--gold-grad) !important;
+    }
+
+    /* Carte Elite : arête dorée + subtile teinte or en fond */
+    .pricing-card--elite {
+      border-color: var(--gold-line) !important;
+      background: linear-gradient(180deg, rgba(196,162,74,0.04) 0%, transparent 40%) !important;
+    }
+    .pricing-card--elite::before {
+      content: ''; position: absolute; top: 0; left: 26px; right: 26px; height: 1px;
+      background: var(--gold-grad);
+    }
+
+    /* Hero desktop : ambient glow doré bas-droite (lumière studio) */
+    @media (min-width: 769px) {
+      .hero-bg-gradient {
+        background:
+          radial-gradient(ellipse 60% 50% at 15% 40%, rgba(26,144,217,0.08) 0%, transparent 65%),
+          radial-gradient(ellipse 55% 45% at 82% 78%, rgba(196,162,74,0.07) 0%, transparent 60%),
+          radial-gradient(ellipse 40% 60% at 85% 75%, rgba(10,60,110,0.10) 0%, transparent 65%) !important;
+      }
+    }
+
+    /* Statement section : ornement en losange entre texte et villes */
+    .statement .container { position: relative; }
+    .statement small::before {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--gold-line);
+      margin: 0 auto 18px;
+    }
+
+    /* Section-label : filet dessinable (réinitialisé pour GSAP draw) */
+    .section-label::before {
+      transform-origin: left center;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    html.js .section-label.label-hidden::before { transform: scaleX(0); }
+    html.js .section-label.label-visible::before { transform: scaleX(1); }
+
+    /* CTA aura : argent métallique plutôt que bleu électrique */
+    @media (min-width: 769px) {
+      @keyframes cta-aura {
+        0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 0 0 rgba(26,144,217,0); }
+        50%       { box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 22px 1px rgba(197,216,234,0.18); }
+      }
+    }
+
+    /* Service card CTA arrow — transition premium */
+    .service-card-cta { transition: gap 0.3s var(--ease-out), color 0.3s; }
+    .service-card-cta:hover { gap: 10px; }
+
+    /* Pricing card spotlight hover (miroir service cards) */
+    .pricing-card { isolation: isolate; }
+    .pricing-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0;
+      background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), rgba(150,190,230,0.08), transparent 65%);
+      opacity: 0; transition: opacity 0.4s var(--ease-out);
+    }
+    .pricing-card:hover::after { opacity: 1; }
+
+    /* Micro-copy discrétion sous le hero CTA (desktop) */
+    @media (min-width: 769px) {
+      .hero-cta-note {
+        display: block;
+        margin-top: -36px;
+        margin-bottom: 40px;
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(197,216,234,0.35);
+      }
+    }
+    @media (max-width: 768px) { .hero-cta-note { display: none; } }
   </style>
 </head>
 <body>
@@ -3743,9 +3894,9 @@
         </div>
 
         <p class="hero-sub">
-          <span class="fr">Le soin d'exception, chez vous. Automobiles de prestige, yachts et aviation privée — traités à la vapeur sèche, sans une goutte d'eau, pour une finition miroir. De Monaco à Saint-Tropez.</span>
-          <span class="en">Exceptional care, at your door. Prestige automobiles, yachts and private aviation — treated with dry steam, without a single drop of water, for a mirror finish. From Monaco to Saint-Tropez.</span>
-          <span class="ru">Исключительный уход у вас дома. Престижные автомобили, яхты и частная авиация — обработка сухим паром, без единой капли воды, до зеркального блеска. От Монако до Сен-Тропе.</span>
+          <span class="fr">Le soin d'exception, à votre porte. Automobiles de prestige, yachts et aviation privée — traités à la vapeur sèche, sans une goutte d'eau, pour une finition miroir. De Monaco à Saint-Tropez, dans la plus grande discrétion.</span>
+          <span class="en">Exceptional care, at your door. Prestige automobiles, yachts and private aviation — treated with dry steam, without a single drop of water, for a mirror finish. From Monaco to Saint-Tropez, with absolute discretion.</span>
+          <span class="ru">Исключительный уход у вас дома. Престижные автомобили, яхты и частная авиация — обработка сухим паром, без единой капли воды, до зеркального блеска. От Монако до Сен-Тропе, в полной конфиденциальности.</span>
         </p>
 
         <div class="hero-actions">
@@ -3756,11 +3907,12 @@
             <span class="ru">Получить расчёт</span>
           </a>
           <a href="#services" class="btn btn-ghost">
-            <span class="fr">Voir nos prestations</span>
-            <span class="en">See our services</span>
+            <span class="fr">Découvrir nos prestations</span>
+            <span class="en">Discover our services</span>
             <span class="ru">Наши услуги</span>
           </a>
         </div>
+        <span class="hero-cta-note">· Service privé · Discrétion garantie · Réponse sous 1h ·</span>
 
         <div class="hero-trust" role="list">
           <div class="trust-item" role="listitem">
@@ -3769,8 +3921,8 @@
             </div>
             <div class="trust-text">
               <span class="trust-value">500+</span>
-              <span class="trust-label fr">Interventions</span>
-              <span class="trust-label en">Services completed</span>
+              <span class="trust-label fr">Missions privées</span>
+              <span class="trust-label en">Private missions</span>
               <span class="trust-label ru">Выездов</span>
             </div>
           </div>
@@ -3792,10 +3944,10 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--cta)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div class="trust-text">
-              <span class="trust-value">3h</span>
-              <span class="trust-label fr">Délai d'intervention</span>
-              <span class="trust-label en">Response time</span>
-              <span class="trust-label ru">Время отклика</span>
+              <span class="trust-value">&lt;1h</span>
+              <span class="trust-label fr">Réponse devis</span>
+              <span class="trust-label en">Quote response</span>
+              <span class="trust-label ru">Ответ на запрос</span>
             </div>
           </div>
           <div class="trust-divider" aria-hidden="true"></div>
@@ -3839,23 +3991,25 @@
         <span class="city-band-label fr">Zones d'intervention</span>
         <span class="city-band-label en">Service zones</span>
         <span class="city-band-label ru">Зоны выезда</span>
-        <span class="city-band-name city-band-name--premium">Monaco</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name">Cap d'Ail</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name">Nice</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name city-band-name--premium">Cannes</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name">Antibes</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name">Mougins</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name city-band-name--premium">Saint-Tropez</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name">Grasse</span>
-        <span class="city-band-sep" aria-hidden="true"></span>
-        <span class="city-band-name">Mandelieu</span>
+        <div class="city-band-cities">
+          <span class="city-band-name city-band-name--premium">Monaco</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name">Cap d'Ail</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name">Nice</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name city-band-name--premium">Cannes</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name">Antibes</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name">Mougins</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name city-band-name--premium">Saint-Tropez</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name">Grasse</span>
+          <span class="city-band-sep" aria-hidden="true"></span>
+          <span class="city-band-name">Mandelieu</span>
+        </div>
       </div>
     </div>
   </div>
@@ -4488,14 +4642,14 @@
         <p class="section-label en">Our clientele</p>
         <p class="section-label ru">Наша клиентура</p>
         <h2 class="section-title" id="clientele-title">
-          <span class="fr">Une clientèle <em>exigeante</em></span>
-          <span class="en">A <em>discerning</em> clientele</span>
-          <span class="ru"><em>Взыскательная</em> клиентура</span>
+          <span class="fr">Une clientèle <em>d'exception</em></span>
+          <span class="en">A clientele of <em>distinction</em></span>
+          <span class="ru">Клиентура <em>высшего уровня</em></span>
         </h2>
         <p class="section-sub" style="margin:0 auto;">
-          <span class="fr">Celles et ceux pour qui le détail n'est pas un luxe, mais une évidence. Notre discrétion est à la mesure de leur exigence.</span>
-          <span class="en">Those for whom detail is not a luxury, but a given. Our discretion matches their standards.</span>
-          <span class="ru">Для тех, кому деталь — не роскошь, а данность. Наша сдержанность под стать их требовательности.</span>
+          <span class="fr">Celles et ceux pour qui le détail n'est pas un luxe, mais une évidence. Nous intervenons sur invitation, par recommandation, ou via conciergerie partenaire. Notre discrétion est à la mesure de leur exigence.</span>
+          <span class="en">Those for whom detail is not a luxury, but a given. We serve by invitation, referral, or through partner concierge. Our discretion matches their standards.</span>
+          <span class="ru">Для тех, кому деталь — не роскошь, а данность. Мы работаем по приглашению, по рекомендации или через партнёрский консьерж-сервис. Наша сдержанность под стать их требовательности.</span>
         </p>
       </div>
 
@@ -4733,9 +4887,9 @@
               <p class="pricing-private-label fr">Yacht & Aviation — Devis privé</p>
               <p class="pricing-private-label en">Yacht & Aviation — Private quote</p>
               <p class="pricing-private-label ru">Яхты и авиация — Частный расчёт</p>
-              <p class="pricing-private-desc fr">Chaque intervention nautique ou aéronautique est établie sur mesure. Contactez Pierre Dubois directement pour une offre confidentielle adaptée à votre navire ou aéronef.</p>
-              <p class="pricing-private-desc en">Every nautical or aviation service is tailored. Contact Pierre Dubois directly for a confidential offer adapted to your vessel or aircraft.</p>
-              <p class="pricing-private-desc ru">Каждая морская или авиационная услуга — индивидуальна. Свяжитесь напрямую с Пьером Дюбуа для конфиденциального предложения под ваше судно или воздушное судно.</p>
+              <p class="pricing-private-desc fr">Chaque intervention nautique ou aéronautique est établie sur mesure, dans la plus stricte confidentialité. Contactez Pierre Dubois directement pour une offre adaptée à votre navire ou aéronef.</p>
+              <p class="pricing-private-desc en">Every nautical or aviation service is fully bespoke, handled with absolute discretion. Contact Pierre Dubois directly for an offer tailored to your vessel or aircraft.</p>
+              <p class="pricing-private-desc ru">Каждая морская или авиационная услуга — сугубо индивидуальна и строго конфиденциальна. Свяжитесь с Пьером Дюбуа напрямую для предложения под ваше судно или воздушное судно.</p>
             </div>
           </div>
           <div class="pricing-private-right">
@@ -6257,9 +6411,9 @@
         });
       }
 
-      // 11 — Compteurs animés (trust bar + eco-stats) au défilement
+      // 11 — Compteurs animés (trust bar + stats strip + eco-stats) au défilement
       if (ST) {
-        document.querySelectorAll('.trust-value, .eco-stat-value').forEach(el => {
+        document.querySelectorAll('.trust-value, .stat-value, .eco-stat-value').forEach(el => {
           const raw = el.textContent.trim();
           const m = raw.match(/^(\D*)(\d+(?:[.,]\d+)?)(.*)$/);
           if (!m) return;
@@ -6272,6 +6426,31 @@
               v: target, duration: 1.6, ease: 'power2.out',
               onUpdate: () => { el.textContent = pre + obj.v.toFixed(dec) + suf; }
             })
+          });
+        });
+      }
+
+      // 13 — Section-label : filet draw gauche→droite à l'entrée en viewport
+      if (ST && window.innerWidth >= 768) {
+        document.querySelectorAll('.section-label').forEach(el => {
+          el.classList.add('label-hidden');
+          ST.create({
+            trigger: el, start: 'top 88%', once: true,
+            onEnter: () => {
+              el.classList.remove('label-hidden');
+              el.classList.add('label-visible');
+            }
+          });
+        });
+      }
+
+      // 14 — Pricing cards : spotlight sous la souris (miroir service cards)
+      if (!isTouch && !isMobile) {
+        document.querySelectorAll('.pricing-card').forEach(card => {
+          card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+            card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
           });
         });
       }
