@@ -3287,6 +3287,52 @@
     .cookie-decline { background: transparent; border: 1px solid var(--border-hover); color: var(--silver); }
     .cookie-decline:hover { color: #fff; border-color: var(--silver-light); }
     @media (prefers-reduced-motion: reduce) { .cookie-bar, .skip-link { transition: none; } }
+
+    /* ==============================================================
+       PORSCHE ENTIÈRE — OVERRIDE FINAL (PRIORITÉ ABSOLUE)
+       Voiture Porsche 911 Turbo S (1672×941 px) visible EN ENTIER
+       sur mobile ET desktop. Appliqué après toutes les règles CSS.
+    ============================================================== */
+
+    /* ── Mobile ≤768px : background-size:contain → voiture entière ──
+       Mathématique : à 390px de large, contain = 390×219 px rendu.
+       Hero à 118dvh = ~996 px. Espace disponible : 996−219 = 777 px.
+       Position 78 % : voiture de y≈606 px à y≈825 px → entière. */
+    @media (max-width: 768px) {
+      .hero { min-height: 118dvh !important; }
+
+      .hero-photo {
+        background-size: contain !important;
+        background-position: center 78% !important;
+        background-color: #000 !important;
+        animation: none !important;
+      }
+
+      /* Overlay : zone sombre pour le texte, transparente pour la voiture */
+      .hero-photo-overlay {
+        background: linear-gradient(180deg,
+          rgba(0,0,0,0.95) 0%,
+          rgba(0,0,0,0.80) 22%,
+          rgba(0,0,0,0.30) 52%,
+          rgba(0,0,0,0.04) 64%,
+          rgba(0,0,0,0.08) 78%,
+          rgba(0,0,0,0.52) 100%
+        ) !important;
+      }
+    }
+
+    /* ── Petits smartphones ≤430px : annule flex-end, remonte la voiture ──
+       À 375 px (SE) : voiture de y≈403 px à y≈614 px, gap texte/voiture ≈67 px. */
+    @media (max-width: 430px) {
+      .hero {
+        align-items: flex-start !important;
+        padding-top: calc(var(--nav-h) + 16px) !important;
+        padding-bottom: 0 !important;
+      }
+      .hero .container { padding-bottom: 0 !important; }
+      /* Moins de contenu (badge/sub/trust masqués) → voiture remontée */
+      .hero-photo { background-position: center 70% !important; }
+    }
   </style>
 </head>
 <body>

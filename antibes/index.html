@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
@@ -44,12 +44,12 @@ img{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-height:1.08}
 .silver{background:linear-gradient(180deg,#fff,#B9C8D8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 /* nav */
-nav.bar{position:fixed;top:16px;left:16px;right:16px;height:64px;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 26px;border-radius:14px;background:rgba(5,6,8,.8);backdrop-filter:blur(18px);border:1px solid var(--border)}
-.logo{display:flex;align-items:center;gap:11px;font-family:'Cinzel','Trajan Pro',Georgia,serif;font-weight:600;letter-spacing:.07em;font-size:17px}.logo-mark{flex-shrink:0}.logo small{display:block;font-family:var(--body);font-size:8.5px;letter-spacing:.2em;color:var(--silver);font-weight:500;text-transform:uppercase}
+nav.bar{position:fixed;top:16px;left:16px;right:16px;height:92px;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:0 26px;border-radius:14px;background:rgba(5,6,8,.8);backdrop-filter:blur(18px);border:1px solid var(--border)}
+.ave-wm{font-family:'Cinzel','Trajan Pro',Georgia,serif}.logo{display:flex;align-items:center}.logo .ave-logo{height:80px;width:auto;display:block;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.45))}@media(max-width:768px){.logo .ave-logo{height:55px}}
 .bar .back{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--silver)}
 .bar .back:hover{color:#fff}
 /* hero */
-.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;padding-top:100px}
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;padding-top:120px}
 .hero-bg{position:absolute;inset:0;z-index:0;background:#000 url('../assets/hero-detailing-luxe.webp') center bottom/cover no-repeat}
 .hero-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(5,6,8,.9),rgba(5,6,8,.55) 45%,rgba(5,6,8,.85))}
 .hero .wrap{position:relative;z-index:2}
@@ -92,7 +92,7 @@ footer{border-top:1px solid var(--border);background:#090B0E;padding:40px 0}
 </head>
 <body>
 <nav class="bar">
-  <a href="../index.html" class="logo"><svg class="logo-mark" width="26" height="30" viewBox="0 0 100 100"><defs><linearGradient id="cs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF1F4"/><stop offset=".5" stop-color="#C9CDD3"/><stop offset="1" stop-color="#A2A8B0"/></linearGradient></defs><g fill="none" stroke="url(#cs)" stroke-width="7.5" stroke-linejoin="miter"><path d="M50 13 L30 49 M50 13 L70 49"/><path d="M31 55 L50 88 L69 55"/></g><rect x="40" y="49.4" width="20" height="3.2" fill="url(#cs)"/></svg><span>Aqua Vapor<small>Elite &#183; C&#244;te d&#8217;Azur</small></span></a>
+  <a href="../index.html" class="logo" aria-label="Aqua Vapor Elite — Accueil"><svg class="ave-logo" viewBox="0 0 520 132" role="img" aria-label="AQUA VAPOR ELITE"><defs><linearGradient id="ave-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F6F8"/><stop offset=".5" stop-color="#C9CDD3"/><stop offset="1" stop-color="#9DA3AB"/></linearGradient></defs><g transform="translate(24,22)"><g fill="none" stroke="url(#ave-s)" stroke-width="6.6" stroke-linejoin="miter"><path d="M47 9 L30 40 M47 9 L64 40"/><path d="M31 45 L47 74 L63 45"/></g><rect x="38.5" y="40.3" width="17" height="2.8" fill="url(#ave-s)"/></g><line x1="104" y1="30" x2="104" y2="102" stroke="#3a4a63" stroke-width="1"/><text class="ave-wm" x="126" y="60" font-weight="600" font-size="30" letter-spacing="3.2" fill="url(#ave-s)">AQUA VAPOR</text><text class="ave-wm" x="127" y="95" font-weight="500" font-size="17.5" letter-spacing="12" fill="#9aa6b5">ELITE</text></svg></a>
   <div style="display:flex;align-items:center;gap:18px">
     <a href="../index.html" class="back">← Site</a>
     <a href="../index.html#reservation" class="btn btn-g" style="padding:10px 20px">Devis</a>
