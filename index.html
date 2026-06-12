@@ -449,8 +449,14 @@
       background-repeat: no-repeat;
       z-index: 0;
     }
+    /* Mobile : position optimisée pour révéler l'avant du véhicule (phares, capot)
+       dans la zone centrale transparente — 62% horizontal pour trouver la proue */
     @media (max-width: 768px) {
-      .hero-photo { background-position: center 42%; }
+      .hero-photo { background-position: 62% 58%; }
+    }
+    /* iPhone SE : écran plus court → on descend légèrement */
+    @media (max-width: 390px) {
+      .hero-photo { background-position: 60% 62%; }
     }
 
     /* Overlay — l'image étant déjà sur fond noir, on assombrit surtout la gauche
@@ -473,13 +479,20 @@
         );
       z-index: 1;
     }
+    /* Mobile : dégradé en deux zones — sombre en haut (lisibilité texte),
+       quasi-transparent au centre-bas (révèle la carrosserie Porsche) */
     @media (max-width: 768px) {
       .hero-photo-overlay {
-        background: linear-gradient(180deg,
-          rgba(4, 12, 28, 0.80) 0%,
-          rgba(4, 12, 28, 0.62) 45%,
-          rgba(4, 12, 28, 0.80) 100%
-        );
+        background:
+          linear-gradient(180deg,
+            rgba(4, 12, 28, 0.90) 0%,
+            rgba(4, 12, 28, 0.78) 18%,
+            rgba(4, 12, 28, 0.50) 36%,
+            rgba(4, 12, 28, 0.18) 52%,
+            rgba(4, 12, 28, 0.08) 65%,
+            rgba(4, 12, 28, 0.22) 80%,
+            rgba(4, 12, 28, 0.42) 100%
+          );
       }
     }
 
@@ -705,7 +718,10 @@
       line-height: 1;
     }
     @media (max-width: 480px) {
-      .hero-domains { flex-wrap: wrap; gap: 10px; }
+      /* Chips en une seule ligne compacte — pas de wrap */
+      .hero-domains { flex-wrap: nowrap; gap: 6px; overflow: hidden; }
+      .hero-domain { padding: 6px 12px; font-size: 10px; letter-spacing: 0.12em; gap: 6px; }
+      .hero-domain svg { width: 28px; height: 10px; }
       .hero-domain-sep { display: none; }
     }
 
@@ -746,13 +762,35 @@
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
       .lang-btn { font-size: 10px; padding: 5px 10px; }
-      .hero-trust { gap: 16px; }
+      .hero-trust { gap: 14px; }
       .trust-divider { display: none; }
+      /* Hero ≤768px : texte ancré en haut, marges serrées */
+      .hero {
+        align-items: flex-start;
+        padding-top: calc(var(--nav-h) + 16px);
+        padding-bottom: 0;
+      }
+      .hero .container { padding-bottom: 28px; }
+      .hero-content { max-width: 100%; }
+      .hero-badge { margin-bottom: 12px; }
+      .hero-title {
+        margin-bottom: 14px;
+        font-size: clamp(1.95rem, 8vw, 2.6rem);
+        /* text-shadow pour lisibilité sans heavy overlay */
+        text-shadow: 0 2px 24px rgba(0,0,0,0.92), 0 0 48px rgba(0,0,0,0.65);
+      }
+      .hero-domains { margin-bottom: 14px; }
+      .hero-sub { margin-bottom: 20px; font-size: 0.88rem; line-height: 1.58; }
+      .hero-actions { margin-bottom: 20px; gap: 10px; }
+      .hero-actions .btn { min-height: 44px; padding: 11px 20px; font-size: 11px; }
+      .hero-trust { margin-bottom: 0; }
+      .trust-icon { width: 30px; height: 30px; }
+      .trust-value { font-size: 15px; }
+      .trust-label { font-size: 9px; }
     }
     @media (max-width: 480px) {
       .navbar { left: 12px; right: 12px; padding: 0 18px; }
       .mobile-menu { left: 12px; right: 12px; }
-      .hero-title { font-size: 2.4rem; }
     }
 
     /* =============================================
@@ -2635,6 +2673,85 @@
     .nav-cta:hover {
       background: rgba(255,255,255,0.08) !important;
       border-color: #ffffff;
+    }
+
+    /* ===================================================================
+       HERO MOBILE — Composition premium (post-atelier, priorité absolue)
+       Image profil latéral Porsche 911 Turbo S (1672×941) :
+         0–12%  → bumper avant + phares + roue AV (zone sombre)
+         12–65% → capot / épaule / portière / vitre (zone argentée)
+         65–100%→ roue AR / spoiler / custode (zone distinctive)
+       Sur mobile, on voit 26% de la largeur totale à la fois.
+    =================================================================== */
+
+    /* ── Tablettes & grands smartphones ≤768px : texte haut, voiture bas ──
+       Overlay allégé — le text-shadow du titre assure la lisibilité.
+       Position 8% : cadre sur avant + roue AV + début de carrosserie. */
+    @media (max-width: 768px) {
+      .hero-photo { background-position: 8% 100% !important; }
+      .hero-photo-overlay {
+        background: linear-gradient(180deg,
+          rgba(0,0,0,0.78) 0%,
+          rgba(0,0,0,0.55) 14%,
+          rgba(0,0,0,0.22) 32%,
+          rgba(0,0,0,0.06) 52%,
+          rgba(0,0,0,0.04) 66%,
+          rgba(0,0,0,0.16) 82%,
+          rgba(0,0,0,0.38) 100%
+        ) !important;
+      }
+    }
+
+    /* ── Smartphones ≤430px (iPhone SE / 13 / 15 Pro Max / Samsung) : VOITURE EN HAUT ──
+       Inspiration Porsche / Bentley mobile : la voiture occupe 60–70 %
+       du viewport, le titre + CTA se posent dans la zone sombre du bas. */
+    @media (max-width: 430px) {
+      /* Contenu poussé en bas */
+      .hero {
+        align-items: flex-end !important;
+        padding-top: 0 !important;
+        padding-bottom: 24px !important;
+      }
+      .hero .container { padding-top: 0 !important; padding-bottom: 0 !important; }
+
+      /* Gradient inversé : voiture lumineuse en haut → noir en bas pour le texte */
+      .hero-photo-overlay {
+        background: linear-gradient(to top,
+          rgba(0,0,0,0.95) 0%,
+          rgba(0,0,0,0.82) 16%,
+          rgba(0,0,0,0.42) 36%,
+          rgba(0,0,0,0.10) 56%,
+          rgba(0,0,0,0.02) 100%
+        ) !important;
+      }
+
+      /* Position : montre le front de la voiture (phares + roue + capot) */
+      .hero-photo { background-position: 10% 100% !important; }
+
+      /* Contenu minimal — la voiture parle, le texte complète */
+      .hero-badge  { display: none !important; }
+      .hero-trust  { display: none !important; }
+      .hero-sub    { display: none !important; }
+      .hero-actions .btn-ghost { display: none !important; }
+
+      .hero-title {
+        font-size: 1.88rem !important;
+        line-height: 1.08 !important;
+        margin-bottom: 12px !important;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.98), 0 0 40px rgba(0,0,0,0.75);
+      }
+      .hero-domains {
+        margin-bottom: 14px !important;
+        gap: 6px !important;
+      }
+      .hero-actions {
+        margin-bottom: 0 !important;
+      }
+      .hero-actions .btn {
+        min-height: 46px !important;
+        width: 100% !important;
+        justify-content: center !important;
+      }
     }
 
     /* voile d'intro : noir, au-dessus de tout dans le hero, se lève via GSAP.
