@@ -2342,11 +2342,11 @@
       box-shadow: 0 0 10px var(--cta-glow);
     }
 
-    /* Hero — zoom très lent et continu (le mouvement « vivant ») */
-    .hero-photo { animation: hero-zoom 28s ease-in-out 1.6s infinite alternate; }
+    /* Hero — zoom très lent et continu (le mouvement « vivant ») — réduit à 1.04 pour un rendu luxe sobre */
+    .hero-photo { animation: hero-zoom 32s ease-in-out 1.6s infinite alternate; will-change: transform; }
     @keyframes hero-zoom {
       from { transform: scale(1.0); }
-      to   { transform: scale(1.075); }
+      to   { transform: scale(1.04); }
     }
 
     /* Hero — balayage de lumière argentée, discret et lent */
@@ -5769,7 +5769,7 @@
 
       // --- Lenis (smooth scroll) — desktop uniquement, perf mobile préservée ---
       if (window.Lenis && !isMobile && !isTouch) {
-        const lenis = new window.Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        const lenis = new window.Lenis({ duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
         window.__lenis = lenis; // exposé pour tests E2E / debug
         lenis.on('scroll', () => { if (ST) ST.update(); });
         gsap.ticker.add(t => lenis.raf(t * 1000));
@@ -5818,7 +5818,7 @@
       heroTl
         // écran noir qui se lève lentement (fondu depuis le noir → vapeur → voiture)
         .fromTo('#hero-veil', { opacity: 1 }, { opacity: 0, duration: 1.8, ease: 'power2.inOut' }, 0)
-        .from('.hero-photo', { opacity: 0, duration: 2.4, ease: 'power2.out' }, 0.2)
+        .fromTo('.hero-photo', { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1.0, duration: 2.8, ease: 'power2.out', clearProps: 'transform' }, 0.2)
         .from('.hero-badge', { y: 20, opacity: 0, duration: 1.0 }, 0.7)
         .from('.hero-title .hw-i', { yPercent: 120, opacity: 0, duration: 1.0, stagger: 0.05, ease: 'expo.out' }, 0.85)
         .from('.hero-domains', { y: 18, opacity: 0, duration: 1.1 }, '-=0.9')
@@ -5843,6 +5843,14 @@
             { yPercent: 0, scale: 1.0 },
             { yPercent: 12, scale: 1.07, ease: 'none',
               scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+          // Parallax Porsche premium : la voiture reste dans le cadre, la scène remonte
+          // Passe de « center bottom » (voiture en bas) à « center 45% » (voiture centrée)
+          // → la Porsche semble flotter, effet pub Porsche/Bentley
+          gsap.fromTo('.hero-photo',
+            { backgroundPosition: 'center bottom' },
+            { backgroundPosition: 'center 45%', ease: 'none',
+              scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 } });
         }
 
         // --- RITUEL : scène sticky — grand numéro, panneaux, rail lumineux ---
