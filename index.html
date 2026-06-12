@@ -242,8 +242,8 @@
       filter: drop-shadow(0 1px 1.5px rgba(0,0,0,0.45));
     }
     @media (max-width: 768px) {
-      .navbar { height: 66px; }
-      .nav-logo .ave-logo { height: 55px; }
+      .navbar { height: 62px; }
+      .nav-logo .ave-logo { height: 47px; }
     }
     .nav-logo-icon {
       width: 34px;
@@ -720,7 +720,7 @@
     @media (max-width: 480px) {
       /* Chips en une seule ligne compacte — pas de wrap */
       .hero-domains { flex-wrap: nowrap; gap: 6px; overflow: hidden; }
-      .hero-domain { padding: 6px 12px; font-size: 10px; letter-spacing: 0.12em; gap: 6px; }
+      .hero-domain { padding: 4px 10px; font-size: 10px; letter-spacing: 0.12em; gap: 5px; }
       .hero-domain svg { width: 28px; height: 10px; }
       .hero-domain-sep { display: none; }
     }
@@ -2688,7 +2688,8 @@
        Overlay allégé — le text-shadow du titre assure la lisibilité.
        Position 8% : cadre sur avant + roue AV + début de carrosserie. */
     @media (max-width: 768px) {
-      .hero-photo { background-position: 8% 100% !important; }
+      .hero-photo { background-position: 8% center !important; }
+      .hero-video { object-position: 8% center !important; }
       .hero-photo-overlay {
         background: linear-gradient(180deg,
           rgba(0,0,0,0.78) 0%,
@@ -2726,7 +2727,8 @@
       }
 
       /* Position : montre le front de la voiture (phares + roue + capot) */
-      .hero-photo { background-position: 10% 100% !important; }
+      .hero-photo { background-position: 8% center !important; }
+      .hero-video { object-position: 8% center !important; }
 
       /* Contenu minimal — la voiture parle, le texte complète */
       .hero-badge  { display: none !important; }
@@ -2734,9 +2736,13 @@
       .hero-sub    { display: none !important; }
       .hero-actions .btn-ghost { display: none !important; }
 
+      /* Titre 2 lignes max : les .hero-line passent en inline pour fusionner visuellement */
+      .hero-title .hero-line { display: inline !important; overflow: visible !important; }
+      .hero-title .hero-line-inner { display: inline !important; }
+      .hero-title .hero-line:not(:last-child) .hero-line-inner::after { content: ' '; }
       .hero-title {
-        font-size: 1.88rem !important;
-        line-height: 1.08 !important;
+        font-size: 1.45rem !important;
+        line-height: 1.28 !important;
         margin-bottom: 12px !important;
         text-shadow: 0 2px 20px rgba(0,0,0,0.98), 0 0 40px rgba(0,0,0,0.75);
       }
@@ -2751,6 +2757,13 @@
         min-height: 46px !important;
         width: 100% !important;
         justify-content: center !important;
+      }
+      .hero-actions .btn-primary {
+        background: rgba(26,144,217,0.72) !important;
+        backdrop-filter: blur(14px) saturate(1.5) !important;
+        -webkit-backdrop-filter: blur(14px) saturate(1.5) !important;
+        border: 1px solid rgba(255,255,255,0.20) !important;
+        box-shadow: 0 4px 24px rgba(26,144,217,0.30), inset 0 1px 0 rgba(255,255,255,0.16) !important;
       }
     }
 
