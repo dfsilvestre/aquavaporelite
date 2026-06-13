@@ -3725,6 +3725,20 @@
     }
 
     /* =====================================================
+       CARTE PREMIUM — marqueurs « halo + pulse » (sans tracé reliant les villes)
+    ===================================================== */
+    .ave-pin { background: transparent; border: 0; }
+    .ave-pin-core { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: radial-gradient(circle at 38% 32%, #FFFFFF, #2AACFF 72%); box-shadow: 0 0 9px 2px rgba(42,172,255,0.5), 0 0 2px rgba(255,255,255,0.95); }
+    .ave-pin-pulse { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; border: 1px solid rgba(42,172,255,0.6); animation: ave-pin-pulse 2.6s ease-out infinite; }
+    @keyframes ave-pin-pulse { 0% { transform: scale(1); opacity: 0.5; } 70%, 100% { transform: scale(3.4); opacity: 0; } }
+    .ave-pin--key .ave-pin-core { width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px; background: radial-gradient(circle at 38% 32%, #FFFFFF, #E2ECF5 58%, #AEC2D6); box-shadow: 0 0 13px 3px rgba(197,216,234,0.65), 0 0 3px #FFFFFF; }
+    .ave-pin--key .ave-pin-pulse { width: 13px; height: 13px; margin: -6.5px 0 0 -6.5px; border-color: rgba(197,216,234,0.75); }
+    .coverage-map .leaflet-tooltip.ave-tip { background: rgba(8,12,18,0.92); border: 1px solid rgba(42,172,255,0.45); color: #E6EEF6; font-family: var(--font-body); font-size: 0.64rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 11px; border-radius: 7px; box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 14px rgba(42,172,255,0.18); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); white-space: nowrap; }
+    .coverage-map .leaflet-tooltip.ave-tip--key { border-color: rgba(197,216,234,0.6); color: #FFFFFF; }
+    .coverage-map .leaflet-tooltip.ave-tip::before { display: none; }
+    @media (prefers-reduced-motion: reduce) { .ave-pin-pulse { animation: none; } }
+
+    /* =====================================================
        PAGE D'ACCUEIL — MOMENTS DE MARQUE PREMIUM
        Pourquoi Aqua Vapor Elite · Garanties · Témoignage signature.
        Surcouche éditoriale : aucun impact SEO / configurateur / pages villes.
@@ -3778,6 +3792,99 @@
       .why-cta .btn, .guar-foot .btn { display: flex; width: 100%; justify-content: center; }
       .why-pillar { padding: 26px 22px 28px; }
     }
+
+    /* =====================================================
+       CONFIGURATEUR — CONTRÔLES PREMIUM (dropdown prestation · calendrier)
+       Le <select> et l'<input date> natifs restent la source de vérité (masqués).
+    ===================================================== */
+    .lux-native-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .form-select-wrap:has(.lux-select) .select-arrow { display: none; }
+
+    /* — Déclencheur commun (dropdown + date) — */
+    .lux-select-trigger, .lux-date-trigger {
+      width: 100%; display: flex; align-items: center; gap: 12px; text-align: left;
+      padding: 14px 16px; border-radius: 10px; cursor: pointer;
+      background: linear-gradient(180deg, rgba(13,19,28,0.92), rgba(8,12,18,0.94));
+      border: 1px solid rgba(150,178,210,0.18);
+      color: var(--silver-light); font-family: var(--font-body); font-size: 0.9rem;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background 0.3s var(--ease-out);
+    }
+    .lux-select-trigger:hover, .lux-date-trigger:hover { border-color: rgba(26,144,217,0.5); background: linear-gradient(180deg, rgba(16,24,34,0.95), rgba(10,15,22,0.96)); }
+    .lux-select.open .lux-select-trigger, .lux-date.open .lux-date-trigger { border-color: var(--cta); box-shadow: 0 0 0 3px rgba(26,144,217,0.12), 0 8px 26px -12px rgba(26,144,217,0.5); }
+    .lux-select-trigger.lux-error, .lux-date-trigger.lux-error { border-color: rgba(220,80,80,0.6); box-shadow: 0 0 0 3px rgba(220,80,80,0.12); }
+    .lux-trig-ic { width: 18px; height: 18px; color: var(--cta); flex-shrink: 0; }
+    .lux-select-value, .lux-date-value { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lux-select-value.is-placeholder, .lux-date-value.is-placeholder { color: var(--muted); }
+    .lux-caret { width: 16px; height: 16px; color: var(--muted); flex-shrink: 0; transition: transform 0.35s var(--ease-out), color 0.3s; }
+    .lux-select.open .lux-caret, .lux-date.open .lux-caret { transform: rotate(180deg); color: var(--cta); }
+
+    /* — Panneau dropdown — */
+    .lux-select, .lux-date { position: relative; }
+    .lux-select-panel {
+      position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 50;
+      background: linear-gradient(180deg, rgba(11,16,23,0.985), rgba(7,10,15,0.985));
+      border: 1px solid rgba(26,144,217,0.3); border-radius: 12px;
+      box-shadow: 0 24px 56px -14px rgba(0,0,0,0.72), 0 0 30px rgba(26,144,217,0.1);
+      padding: 8px; max-height: 326px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      opacity: 0; transform: translateY(-8px) scale(0.985); transform-origin: top center; pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out);
+    }
+    .lux-select.open .lux-select-panel { opacity: 1; transform: none; pointer-events: auto; }
+    .lux-select-panel::-webkit-scrollbar { width: 6px; }
+    .lux-select-panel::-webkit-scrollbar-thumb { background: rgba(150,178,210,0.2); border-radius: 3px; }
+    .lux-optgroup + .lux-optgroup { border-top: 1px solid rgba(150,178,210,0.1); margin-top: 5px; padding-top: 3px; }
+    .lux-optgroup-label { display: flex; align-items: center; gap: 10px; padding: 11px 12px 8px; font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cta); font-weight: 600; }
+    .lux-optgroup-label svg { width: 32px; height: 16px; color: var(--silver-light); flex-shrink: 0; }
+    .lux-opt { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 8px; color: var(--silver-light); font-size: 0.85rem; cursor: pointer; transition: background 0.2s, color 0.2s, box-shadow 0.2s; }
+    .lux-opt:hover { background: rgba(26,144,217,0.1); color: #fff; }
+    .lux-opt.selected { background: rgba(26,144,217,0.16); color: #fff; box-shadow: inset 0 0 0 1px rgba(26,144,217,0.45); }
+    .lux-opt-label { flex: 1; }
+    .lux-opt-price { font-size: 0.74rem; color: var(--muted); white-space: nowrap; }
+    .lux-opt.selected .lux-opt-price { color: var(--cta-hover); }
+    .lux-opt-check { width: 15px; height: 15px; color: var(--cta); opacity: 0; flex-shrink: 0; transition: opacity 0.2s; }
+    .lux-opt.selected .lux-opt-check { opacity: 1; }
+
+    /* — Calendrier premium — */
+    .lux-cal {
+      position: absolute; top: calc(100% + 8px); left: 0; z-index: 50; width: 304px; max-width: calc(100vw - 48px);
+      background: linear-gradient(180deg, rgba(11,16,23,0.985), rgba(7,10,15,0.985));
+      border: 1px solid rgba(26,144,217,0.3); border-radius: 14px;
+      box-shadow: 0 24px 56px -14px rgba(0,0,0,0.74), 0 0 30px rgba(26,144,217,0.1);
+      padding: 16px; opacity: 0; transform: translateY(-8px) scale(0.985); transform-origin: top left; pointer-events: none;
+      transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out);
+    }
+    .lux-date.open .lux-cal { opacity: 1; transform: none; pointer-events: auto; }
+    .lux-cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .lux-cal-month { font-family: var(--font-head); font-size: 1.04rem; font-weight: 600; color: #fff; text-transform: capitalize; }
+    .lux-cal-nav { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; border: 1px solid rgba(150,178,210,0.18); background: rgba(255,255,255,0.02); color: var(--silver-light); cursor: pointer; transition: all 0.2s; }
+    .lux-cal-nav:hover:not(:disabled) { border-color: var(--cta); color: #fff; background: rgba(26,144,217,0.12); }
+    .lux-cal-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+    .lux-cal-nav svg { width: 16px; height: 16px; }
+    .lux-cal-dows { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin-bottom: 6px; }
+    .lux-cal-dow { text-align: center; font-size: 0.6rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); padding: 4px 0; }
+    .lux-cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+    .lux-cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; color: var(--silver-light); border-radius: 8px; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, color 0.2s, border-color 0.2s; }
+    .lux-cal-day.empty { visibility: hidden; cursor: default; }
+    .lux-cal-day.disabled { color: rgba(112,142,170,0.28); cursor: not-allowed; }
+    .lux-cal-day.avail:hover { background: rgba(26,144,217,0.14); color: #fff; border-color: rgba(26,144,217,0.4); }
+    .lux-cal-day.today { border-color: rgba(150,178,210,0.32); }
+    .lux-cal-day.selected { background: var(--cta); color: #fff; font-weight: 600; box-shadow: 0 0 0 3px rgba(26,144,217,0.18), 0 4px 14px rgba(26,144,217,0.4); }
+    .lux-cal-foot { margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(150,178,210,0.1); font-size: 0.68rem; color: var(--muted); text-align: center; letter-spacing: 0.03em; }
+    @media (max-width: 480px) { .lux-cal { width: 100%; right: 0; } }
+
+    /* =====================================================
+       ZONES D'INTERVENTION — carrousel villes (mobile : marquee infini, pause au toucher)
+    ===================================================== */
+    @media (max-width: 899px) {
+      .city-band-cities { overflow: hidden; justify-content: flex-start; padding: 0;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
+      .city-band-track { display: flex; align-items: center; flex-wrap: nowrap; width: max-content; animation: city-marquee 34s linear infinite; will-change: transform; }
+      .city-band-track.is-paused { animation-play-state: paused; }
+    }
+    @keyframes city-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .city-band-track { animation: none !important; } }
   </style>
 </head>
 <body>
@@ -6328,43 +6435,202 @@
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 19, pane: 'overlayPane'
       }).addTo(map);
+      // Marqueurs premium (halo + pulse) — aucun tracé reliant les villes
+      const makeIcon = (key) => L.divIcon({
+        className: 'ave-pin' + (key ? ' ave-pin--key' : ''),
+        html: '<span class="ave-pin-pulse" aria-hidden="true"></span><span class="ave-pin-core"></span>',
+        iconSize: [16, 16], iconAnchor: [8, 8]
+      });
       const markers = cities.map(([name, lat, lng]) => {
         const key = name === 'Monaco';
-        return L.circleMarker([lat, lng], {
-          radius: key ? 6 : 5, weight: 1.5,
-          color: '#FFFFFF',
-          fillColor: key ? '#FFFFFF' : '#2AACFF',
-          fillOpacity: 0.95
-        }).addTo(map).bindTooltip(name, { className: 'ave-tip', direction: 'top', offset: [0, -4] });
+        const m = L.marker([lat, lng], { icon: makeIcon(key), keyboard: false, riseOnHover: true, title: name })
+          .addTo(map)
+          .bindTooltip(name, { className: 'ave-tip' + (key ? ' ave-tip--key' : ''), direction: 'top', offset: [0, -7] });
+        m.on('mouseover', () => m.openTooltip());
+        m.on('mouseout', () => m.closeTooltip());
+        m.on('click', () => m.openTooltip());   // mobile : un tap révèle le nom
+        return m;
       });
-      // 10 — ligne côtière Monaco → Saint-Tropez (tracé animé)
-      const coast = [
-        [43.7384, 7.4246], [43.7186, 7.4042], [43.7065, 7.3319], [43.7102, 7.2620],
-        [43.6650, 7.2150], [43.5808, 7.1214], [43.5528, 7.0174], [43.5469, 6.9376],
-        [43.4900, 6.9300], [43.4100, 6.7400], [43.2674, 6.6406]
-      ];
-      const line = L.polyline(coast, { color: '#2AACFF', weight: 2.5, opacity: 0.95, className: 'coast-line', smoothFactor: 1.5 }).addTo(map);
-      map.fitBounds(L.featureGroup([...markers, line]).getBounds(), { padding: [30, 30] });
+      map.fitBounds(L.featureGroup(markers).getBounds(), { padding: [38, 38] });
 
-      const drawLine = () => {
-        const el = line.getElement && line.getElement();
-        if (!el) return;
-        try {
-          const len = el.getTotalLength();
-          el.style.strokeDasharray = len; el.style.strokeDashoffset = len;
-          el.getBoundingClientRect(); // reflow
-          el.style.transition = 'stroke-dashoffset 2.4s ease-out';
-          requestAnimationFrame(() => { el.style.strokeDashoffset = '0'; });
-        } catch (e) {}
+      // Apparition douce et échelonnée des points quand la carte entre dans le champ
+      const revealPins = () => {
+        markers.forEach((m, i) => {
+          const root = m.getElement && m.getElement();
+          if (!root) return;
+          const core = root.querySelector('.ave-pin-core');
+          const pulse = root.querySelector('.ave-pin-pulse');
+          if (core) { core.style.opacity = '0'; core.style.transform = 'scale(0.2)'; }
+          if (pulse) pulse.style.animationPlayState = 'paused';
+          setTimeout(() => {
+            if (core) { core.style.transition = 'opacity 0.5s ease-out, transform 0.65s cubic-bezier(0.16,1,0.3,1)'; core.style.opacity = '1'; core.style.transform = 'scale(1)'; }
+            if (pulse) pulse.style.animationPlayState = 'running';
+          }, 120 + i * 65);
+        });
       };
-      // anime le tracé quand la carte entre dans le champ (une fois)
       let drawn = false;
       const mapIO = new IntersectionObserver(es => {
-        es.forEach(en => { if (en.isIntersecting && !drawn) { drawn = true; setTimeout(drawLine, 200); mapIO.disconnect(); } });
-      }, { threshold: 0.3 });
+        es.forEach(en => { if (en.isIntersecting && !drawn) { drawn = true; setTimeout(revealPins, 150); mapIO.disconnect(); } });
+      }, { threshold: 0.25 });
       mapIO.observe(el);
-      // le conteneur peut être révélé après coup (data-animate) → on recalcule
-      setTimeout(() => { map.invalidateSize(); if (drawn) drawLine(); }, 400);
+      // le conteneur peut être révélé après coup (data-animate) → on recalcule la taille
+      setTimeout(() => { map.invalidateSize(); }, 400);
+      window.addEventListener('resize', () => { try { map.invalidateSize(); map.fitBounds(L.featureGroup(markers).getBounds(), { padding: [38, 38] }); } catch (e) {} });
+    })();
+
+    // --- Helper : referme tout dropdown/calendrier premium ouvert ---
+    function closeAllLux(except) {
+      document.querySelectorAll('.lux-select.open, .lux-date.open').forEach(el => {
+        if (el !== except) { el.classList.remove('open'); const t = el.querySelector('[aria-expanded]'); if (t) t.setAttribute('aria-expanded', 'false'); }
+      });
+    }
+
+    // --- Dropdown premium « Prestation souhaitée » (skin du <select> natif) ---
+    (function luxSelect() {
+      const sel = document.getElementById('service');
+      if (!sel) return;
+      const wrap = sel.closest('.form-select-wrap');
+      if (!wrap) return;
+      const groupIcons = { TERRE: '#lux-car', MER: '#lux-yacht', AIR: '#lux-jet' };
+      const groups = [...sel.querySelectorAll('optgroup')].map(og => {
+        const lbl = og.label || '';
+        const key = lbl.indexOf('TERRE') > -1 ? 'TERRE' : lbl.indexOf('MER') > -1 ? 'MER' : 'AIR';
+        const byVal = {};
+        [...og.querySelectorAll('option')].forEach(o => {
+          const v = o.value; if (!v) return;
+          byVal[v] = byVal[v] || { value: v };
+          if (o.classList.contains('en')) byVal[v].en = o.textContent.trim(); else byVal[v].fr = o.textContent.trim();
+        });
+        return { key, icon: groupIcons[key], rows: Object.keys(byVal).map(k => byVal[k]) };
+      });
+      const split = t => { const i = t.lastIndexOf(' — '); return i > -1 ? [t.slice(0, i), t.slice(i + 3)] : [t, '']; };
+      const check = '<svg class="lux-opt-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      let html = '<button type="button" class="lux-select-trigger" aria-haspopup="listbox" aria-expanded="false">'
+        + '<span class="lux-select-value is-placeholder"><span class="fr">Choisissez une prestation</span><span class="en">Choose a service</span><span class="ru">Выберите услугу</span></span>'
+        + '<svg class="lux-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>'
+        + '<div class="lux-select-panel" role="listbox">';
+      groups.forEach(g => {
+        html += '<div class="lux-optgroup"><div class="lux-optgroup-label"><svg viewBox="0 0 120 60" aria-hidden="true"><use href="' + g.icon + '"/></svg>' + g.key + '</div>';
+        g.rows.forEach(r => {
+          const fr = split(r.fr || r.en || ''), en = split(r.en || r.fr || '');
+          html += '<div class="lux-opt" role="option" data-value="' + r.value + '" tabindex="0">'
+            + '<span class="lux-opt-label"><span class="fr">' + fr[0] + '</span><span class="en">' + en[0] + '</span><span class="ru">' + en[0] + '</span></span>'
+            + (fr[1] ? '<span class="lux-opt-price"><span class="fr">' + fr[1] + '</span><span class="en">' + en[1] + '</span><span class="ru">' + en[1] + '</span></span>' : '')
+            + check + '</div>';
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+      const root = document.createElement('div'); root.className = 'lux-select'; root.innerHTML = html;
+      sel.classList.add('lux-native-hidden'); sel.setAttribute('tabindex', '-1'); sel.setAttribute('aria-hidden', 'true');
+      const nativeArrow = wrap.querySelector('.select-arrow'); if (nativeArrow) nativeArrow.style.display = 'none';
+      wrap.appendChild(root);
+      const trigger = root.querySelector('.lux-select-trigger'), panel = root.querySelector('.lux-select-panel'), valueEl = root.querySelector('.lux-select-value');
+      const close = () => { root.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); };
+      const open = () => { closeAllLux(root); root.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); const s = panel.querySelector('.lux-opt.selected'); if (s) s.scrollIntoView({ block: 'nearest' }); if (window.gsap && !prefersReduced) window.gsap.fromTo(panel.querySelectorAll('.lux-optgroup'), { autoAlpha: 0, y: 9 }, { autoAlpha: 1, y: 0, duration: 0.32, stagger: 0.05, ease: 'power2.out', delay: 0.04, clearProps: 'transform' }); };
+      trigger.addEventListener('click', () => root.classList.contains('open') ? close() : open());
+      const pick = el => {
+        sel.value = el.dataset.value; sel.dispatchEvent(new Event('change', { bubbles: true }));
+        panel.querySelectorAll('.lux-opt').forEach(o => o.classList.toggle('selected', o === el));
+        valueEl.innerHTML = el.querySelector('.lux-opt-label').innerHTML; valueEl.classList.remove('is-placeholder');
+        sel.classList.remove('field-error'); close();
+      };
+      panel.querySelectorAll('.lux-opt').forEach(o => {
+        o.addEventListener('click', () => pick(o));
+        o.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(o); } });
+      });
+      document.addEventListener('click', e => { if (!root.contains(e.target)) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+      new MutationObserver(() => trigger.classList.toggle('lux-error', sel.classList.contains('field-error'))).observe(sel, { attributes: true, attributeFilter: ['class'] });
+    })();
+
+    // --- Calendrier premium (skin de l'<input type="date">) ---
+    (function luxDate() {
+      const input = document.getElementById('date');
+      if (!input) return;
+      const group = input.closest('.form-group');
+      if (!group) return;
+      const lang = () => document.documentElement.getAttribute('data-lang') || 'fr';
+      const MONTHS = { fr: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'], en: ['January','February','March','April','May','June','July','August','September','October','November','December'], ru: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'] };
+      const DOWS = { fr: ['L','M','M','J','V','S','D'], en: ['M','T','W','T','F','S','S'], ru: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'] };
+      const FOOT = { fr: 'Réponse personnalisée sous 1 heure', en: 'Personal reply within 1 hour', ru: 'Персональный ответ за 1 час' };
+      const PLACE = { fr: 'Sélectionnez une date', en: 'Select a date', ru: 'Выберите дату' };
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      let view = new Date(today.getFullYear(), today.getMonth(), 1), selected = null;
+      const root = document.createElement('div'); root.className = 'lux-date';
+      root.innerHTML = '<button type="button" class="lux-date-trigger" aria-haspopup="dialog" aria-expanded="false">'
+        + '<svg class="lux-trig-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg>'
+        + '<span class="lux-date-value is-placeholder"></span>'
+        + '<svg class="lux-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>'
+        + '<div class="lux-cal" role="dialog" aria-label="Calendrier"><div class="lux-cal-head">'
+        + '<button type="button" class="lux-cal-nav" data-dir="-1" aria-label="Mois précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>'
+        + '<span class="lux-cal-month"></span>'
+        + '<button type="button" class="lux-cal-nav" data-dir="1" aria-label="Mois suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>'
+        + '</div><div class="lux-cal-dows"></div><div class="lux-cal-grid"></div><div class="lux-cal-foot"></div></div>';
+      input.classList.add('lux-native-hidden'); input.setAttribute('tabindex', '-1'); input.setAttribute('aria-hidden', 'true');
+      group.appendChild(root);
+      const trigger = root.querySelector('.lux-date-trigger'), valueEl = root.querySelector('.lux-date-value'),
+        monthEl = root.querySelector('.lux-cal-month'), dowsEl = root.querySelector('.lux-cal-dows'),
+        gridEl = root.querySelector('.lux-cal-grid'), footEl = root.querySelector('.lux-cal-foot'), prevBtn = root.querySelector('[data-dir="-1"]');
+      const fmt = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const human = d => { const l = lang(), dd = d.getDate(), mn = MONTHS[l][d.getMonth()]; return l === 'en' ? mn + ' ' + dd + ', ' + d.getFullYear() : dd + ' ' + mn.toLowerCase() + ' ' + d.getFullYear(); };
+      const setPlaceholder = () => { valueEl.textContent = PLACE[lang()]; valueEl.classList.add('is-placeholder'); };
+      function render() {
+        const l = lang();
+        monthEl.textContent = MONTHS[l][view.getMonth()] + ' ' + view.getFullYear();
+        dowsEl.innerHTML = DOWS[l].map(d => '<div class="lux-cal-dow">' + d + '</div>').join('');
+        footEl.textContent = FOOT[l];
+        prevBtn.disabled = (view.getFullYear() === today.getFullYear() && view.getMonth() === today.getMonth());
+        const startDow = (new Date(view.getFullYear(), view.getMonth(), 1).getDay() + 6) % 7;
+        const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+        let cells = '';
+        for (let i = 0; i < startDow; i++) cells += '<div class="lux-cal-day empty"></div>';
+        for (let d = 1; d <= days; d++) {
+          const date = new Date(view.getFullYear(), view.getMonth(), d), past = date < today,
+            isToday = date.getTime() === today.getTime(), isSel = selected && date.getTime() === selected.getTime();
+          const cls = ['lux-cal-day', past ? 'disabled' : 'avail', isToday ? 'today' : '', isSel ? 'selected' : ''].filter(Boolean).join(' ');
+          cells += '<div class="' + cls + '"' + (past ? '' : ' data-d="' + fmt(date) + '" tabindex="0"') + '>' + d + '</div>';
+        }
+        gridEl.innerHTML = cells;
+        gridEl.querySelectorAll('[data-d]').forEach(c => {
+          c.addEventListener('click', () => choose(c.dataset.d));
+          c.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(c.dataset.d); } });
+        });
+      }
+      function choose(ds) {
+        const p = ds.split('-').map(Number); selected = new Date(p[0], p[1] - 1, p[2]);
+        input.value = ds; input.dispatchEvent(new Event('change', { bubbles: true })); input.classList.remove('field-error');
+        valueEl.textContent = human(selected); valueEl.classList.remove('is-placeholder'); render(); close();
+      }
+      const close = () => { root.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); };
+      const open = () => { closeAllLux(root); root.classList.add('open'); trigger.setAttribute('aria-expanded', 'true'); render(); };
+      trigger.addEventListener('click', () => root.classList.contains('open') ? close() : open());
+      root.querySelectorAll('.lux-cal-nav').forEach(b => b.addEventListener('click', () => { if (b.disabled) return; view.setMonth(view.getMonth() + parseInt(b.dataset.dir, 10)); render(); }));
+      document.addEventListener('click', e => { if (!root.contains(e.target)) close(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+      setPlaceholder();
+      new MutationObserver(() => trigger.classList.toggle('lux-error', input.classList.contains('field-error'))).observe(input, { attributes: true, attributeFilter: ['class'] });
+      new MutationObserver(() => { if (selected) valueEl.textContent = human(selected); else setPlaceholder(); if (root.classList.contains('open')) render(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+    })();
+
+    // --- Carrousel villes (mobile) : marquee infini + pause au toucher/survol ---
+    (function cityMarquee() {
+      const row = document.querySelector('.city-band-cities');
+      if (!row) return;
+      const original = row.innerHTML;
+      const mq = window.matchMedia('(max-width: 899px)');
+      let resume;
+      const toMarquee = () => { if (row.querySelector('.city-band-track')) return; const half = original + '<span class="city-band-sep" aria-hidden="true"></span>'; row.innerHTML = '<div class="city-band-track">' + half + half + '</div>'; };
+      const toStatic = () => { if (row.querySelector('.city-band-track')) row.innerHTML = original; };
+      const apply = m => { m ? toMarquee() : toStatic(); };
+      const setPaused = p => { const t = row.querySelector('.city-band-track'); if (!t) return; if (p) { t.classList.add('is-paused'); clearTimeout(resume); } else { clearTimeout(resume); resume = setTimeout(() => t.classList.remove('is-paused'), 1600); } };
+      row.addEventListener('pointerdown', () => setPaused(true), { passive: true });
+      row.addEventListener('pointerup', () => setPaused(false), { passive: true });
+      row.addEventListener('pointercancel', () => setPaused(false), { passive: true });
+      row.addEventListener('mouseenter', () => setPaused(true));
+      row.addEventListener('mouseleave', () => setPaused(false));
+      apply(mq.matches);
+      mq.addEventListener('change', e => apply(e.matches));
     })();
 
     // --- Réservation → message WhatsApp pré-rempli (pas de faux envoi) ---
