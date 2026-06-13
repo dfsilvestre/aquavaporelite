@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="120" height="60" fill="none" stroke-linejoin="round" stroke-linecap="round" shape-rendering="geometricPrecision" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Jet prive / Aviation">
+  <defs>
+    <linearGradient id="lux-silver" gradientUnits="userSpaceOnUse" x1="60" y1="7" x2="60" y2="42">
+      <stop offset="0" stop-color="#FBFCFE"/>
+      <stop offset="0.22" stop-color="#E6EBF1"/>
+      <stop offset="0.44" stop-color="#D8DCE3"/>
+      <stop offset="0.62" stop-color="#AEB8C4"/>
+      <stop offset="0.78" stop-color="#9CA8B6"/>
+      <stop offset="1" stop-color="#CFD7E0"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#lux-silver)" stroke-width="2">
+    <path d="M 8 31 C 12 28 20 26.5 30 26 L 92 26.5 C 100 27 106 28.5 112 30 C 108 31.5 104 32.5 96 33 L 30 33.5 C 18 33.5 12 32.5 8 31 Z" stroke-width="2.3"/>
+    <path d="M 86 26.5 L 99 9 C 100 8 101 8 103 8.5 L 102 11 L 94 26.5" stroke-width="2"/>
+    <path d="M 99 10 L 112 8 L 113 9.5 L 100 12 Z" stroke-width="1.9"/>
+    <path d="M 52 32.5 L 78 40 L 84 40 L 60 32.5 Z" stroke-width="2"/>
+    <path d="M 16 27.5 L 22 27 L 21 29 L 16 29 Z" stroke-width="1.7"/>
+    <circle cx="34" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="40" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="46" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="52" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="58" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="64" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="70" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="76" cy="29.5" r="0.8" stroke-width="1.5"/>
+  </g>
+</svg>

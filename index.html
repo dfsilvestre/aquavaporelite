@@ -3044,6 +3044,11 @@
     .config-choice svg { width: 26px; height: 26px; color: var(--silver); transition: color 0.25s; }
     /* silhouettes métallisées (larges) dans les choix du configurateur */
     .config-choice svg.cfg-metal { width: 56px; height: 20px; }
+    /* silhouettes premium « ligne fine argent métallisé » — étape 1 (911 · Range Rover · Pershing · G650).
+       Même gabarit pour les 4 ; optimisé mobile & desktop. */
+    .config-choice svg.cfg-lux { width: 84px; height: 42px; stroke-width: 1.6; transition: transform 0.4s var(--ease-out); }
+    .config-choice:hover svg.cfg-lux { transform: translateY(-1px); }
+    @media (max-width: 520px) { .config-choice svg.cfg-lux { width: 74px; height: 37px; } }
     .config-choice:hover { transform: translateY(-2px); border-color: var(--border-hover); }
     .config-choice.selected { border-color: var(--cta); background: rgba(26,144,217,0.10); color: #fff; }
     .config-choice.selected svg { color: var(--cta-hover); }
@@ -3659,6 +3664,65 @@
       }
     }
     @media (max-width: 768px) { .hero-cta-note { display: none; } }
+
+    /* =====================================================
+       CONFIGURATEUR PREMIUM — progression, transitions, sélection, écran final
+       Surcouche : n'altère ni le SEO, ni la structure, ni le responsive existant.
+    ===================================================== */
+    /* En-tête « Étape X sur 5 » */
+    .config-progress-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 13px; }
+    .config-stepnum { font-family: var(--font-display); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin: 0; font-variant-numeric: tabular-nums; }
+    .config-stepnum b.cfg-cur { color: var(--cta-hover); font-weight: 700; font-size: 0.84rem; padding: 0 1px; }
+    .config-step-name { font-family: var(--font-display); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver-light); opacity: 0.82; margin: 0; text-align: right; }
+
+    /* Barre de progression luxe — bleu Aqua → argent métallisé */
+    .config-track { position: relative; height: 3px; border-radius: 3px; overflow: hidden; background: linear-gradient(90deg, rgba(197,216,234,0.09), rgba(197,216,234,0.15)); box-shadow: inset 0 0 0 1px rgba(197,216,234,0.05); }
+    .config-fill { position: relative; display: block; height: 100%; width: 20%; border-radius: 3px; background: linear-gradient(90deg, var(--cta) 0%, #5FB3E6 58%, var(--silver-light) 100%); box-shadow: 0 0 12px rgba(26,144,217,0.5), 0 0 2px rgba(197,216,234,0.55); transition: width 0.6s var(--ease-out); }
+    .config-fill::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.42) 50%, transparent 100%); transform: translateX(-100%); mix-blend-mode: screen; animation: cfg-sheen 4.6s var(--ease-out) infinite; }
+    @keyframes cfg-sheen { 0% { transform: translateX(-100%); } 55%, 100% { transform: translateX(135%); } }
+
+    /* Pastilles d'étape — actif (glow bleu) / fait (coche argentée) */
+    .config-dots { margin-top: 14px; }
+    .config-dot i { width: 28px; height: 28px; font-size: 11px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); color: var(--muted); box-shadow: none; transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out), color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out); }
+    .config-dot.active i { color: #fff; background: var(--cta); border-color: var(--cta); transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(26,144,217,0.15), 0 5px 16px rgba(26,144,217,0.45); }
+    .config-dot.done i { color: transparent; background: rgba(26,144,217,0.13); border-color: rgba(26,144,217,0.5); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232AACFF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 13px; }
+    .config-dot.done b { color: rgba(197,216,234,0.5); }
+
+    /* Transitions d'étape pilotées par GSAP : on neutralise l'ancienne anim CSS */
+    .config-step { animation: none; }
+
+    /* Cartes de sélection premium — survol desktop + état sélectionné (glow bleu) */
+    .config-choice { position: relative; overflow: hidden; }
+    .config-choice::before { content: ''; position: absolute; top: 0; left: -125%; width: 65%; height: 100%; background: linear-gradient(100deg, transparent, rgba(197,216,234,0.10), transparent); transform: skewX(-18deg); transition: left 0.75s var(--ease-out); pointer-events: none; }
+    @media (hover: hover) and (min-width: 769px) {
+      .config-choice:hover { transform: translateY(-3px); border-color: rgba(26,144,217,0.55); background: rgba(26,144,217,0.05); box-shadow: 0 14px 36px -16px rgba(26,144,217,0.5); }
+      .config-choice:hover::before { left: 135%; }
+    }
+    .config-choice.selected { border-color: var(--cta); background: rgba(26,144,217,0.12); box-shadow: 0 0 0 1px var(--cta), 0 10px 30px -12px rgba(26,144,217,0.55); }
+    .config-choice.selected::after { content: ''; position: absolute; top: 9px; right: 9px; width: 18px; height: 18px; border-radius: 50%; background: var(--cta); box-shadow: 0 0 0 3px rgba(26,144,217,0.18); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 11px; }
+    .config-chip.selected { box-shadow: 0 0 0 1px var(--cta), 0 6px 18px -8px rgba(26,144,217,0.5); }
+
+    /* Écran final premium (après validation) */
+    .config-success { display: none; text-align: center; padding: 10px 4px 6px; }
+    .configurator.is-complete .config-progress,
+    .configurator.is-complete .config-step { display: none; }
+    .configurator.is-complete .config-success { display: block; }
+    .config-success-mark { width: 78px; height: 78px; margin: 6px auto 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 38%, rgba(26,144,217,0.22), rgba(26,144,217,0.05) 70%); box-shadow: 0 0 0 1px rgba(26,144,217,0.3), 0 0 36px rgba(26,144,217,0.3); }
+    .config-success-mark svg { width: 40px; height: 40px; }
+    .config-success-title { font-family: var(--font-display); font-weight: 700; font-size: 1.36rem; line-height: 1.22; color: #fff; letter-spacing: -0.01em; margin: 0 0 12px; }
+    .config-success-text { font-size: 0.95rem; line-height: 1.6; color: var(--silver-light); max-width: 36ch; margin: 0 auto 26px; }
+    .config-success-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .config-success-actions .btn { min-width: 188px; justify-content: center; }
+    .config-wa svg { color: #41C178; flex-shrink: 0; }
+    @media (max-width: 520px) {
+      .config-step-name { display: none; }
+      .config-success-actions { flex-direction: column; }
+      .config-success-actions .btn { width: 100%; min-width: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .config-fill::after { animation: none; }
+      .config-choice::before { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -3683,6 +3747,19 @@
         <stop offset="0" stop-color="#F4F6F8"/>
         <stop offset="0.5" stop-color="#C9CDD3"/>
         <stop offset="1" stop-color="#9DA3AB"/>
+      </linearGradient>
+      <!-- argent chromé « ligne fine » — silhouettes premium du configurateur (#D8DCE3, sheen vertical par véhicule) -->
+      <linearGradient id="lux-silver-car" gradientUnits="userSpaceOnUse" x1="60" y1="20" x2="60" y2="52">
+        <stop offset="0" stop-color="#FBFCFE"/><stop offset="0.22" stop-color="#E6EBF1"/><stop offset="0.44" stop-color="#D8DCE3"/><stop offset="0.62" stop-color="#AEB8C4"/><stop offset="0.78" stop-color="#9CA8B6"/><stop offset="1" stop-color="#CFD7E0"/>
+      </linearGradient>
+      <linearGradient id="lux-silver-suv" gradientUnits="userSpaceOnUse" x1="60" y1="17" x2="60" y2="52">
+        <stop offset="0" stop-color="#FBFCFE"/><stop offset="0.22" stop-color="#E6EBF1"/><stop offset="0.44" stop-color="#D8DCE3"/><stop offset="0.62" stop-color="#AEB8C4"/><stop offset="0.78" stop-color="#9CA8B6"/><stop offset="1" stop-color="#CFD7E0"/>
+      </linearGradient>
+      <linearGradient id="lux-silver-yacht" gradientUnits="userSpaceOnUse" x1="60" y1="19" x2="60" y2="47">
+        <stop offset="0" stop-color="#FBFCFE"/><stop offset="0.22" stop-color="#E6EBF1"/><stop offset="0.44" stop-color="#D8DCE3"/><stop offset="0.62" stop-color="#AEB8C4"/><stop offset="0.78" stop-color="#9CA8B6"/><stop offset="1" stop-color="#CFD7E0"/>
+      </linearGradient>
+      <linearGradient id="lux-silver-jet" gradientUnits="userSpaceOnUse" x1="60" y1="7" x2="60" y2="42">
+        <stop offset="0" stop-color="#FBFCFE"/><stop offset="0.22" stop-color="#E6EBF1"/><stop offset="0.44" stop-color="#D8DCE3"/><stop offset="0.62" stop-color="#AEB8C4"/><stop offset="0.78" stop-color="#9CA8B6"/><stop offset="1" stop-color="#CFD7E0"/>
       </linearGradient>
       <symbol id="ave-car" viewBox="0 0 132 48">
         <path fill="url(#ave-metal)" fill-rule="evenodd" d="M4,33 C3,31 3.5,29.5 6,29 C18,26.5 34,24.5 54,22.5 C60,16 68,13.5 76,13.5 C84,13.5 92,16.5 99,20.5 C108,22.5 114,24 118,26 C121.5,27.5 122.5,30 121.5,33 L120.5,36 C119.5,36.8 117.5,37 115.5,37 L111.5,37 A10.5,10.5 0 0 0 90.5,37 L46.5,37 A10.5,10.5 0 0 0 25.5,37 L12,37 C7,37 5,35.5 4,33 Z
@@ -3728,6 +3805,37 @@
         <path fill="url(#ave-metal)" d="M64,12 L68,12 L68,16.5 L64,16.5 Z"/>
         <path fill="url(#ave-metal)" d="M63.8,11 a2.2,2.2 0 1 0 4.4,0 a2.2,2.2 0 1 0 -4.4,0 Z"/>
         <path fill="url(#ave-metal)" d="M48.5,33 L83.5,33 a1.6,1.6 0 0 1 1.6,1.6 L85.1,35.4 a1.6,1.6 0 0 1 -1.6,1.6 L48.5,37 a1.6,1.6 0 0 1 -1.6,-1.6 L46.9,34.6 a1.6,1.6 0 0 1 1.6,-1.6 Z"/>
+      </symbol>
+
+      <!-- ===== Silhouettes premium « ligne fine argent » — configurateur (étape 1) =====
+           Porsche 911 · Range Rover · Pershing/Riva · Gulfstream G650. ViewBox commun 120×60. -->
+      <symbol id="lux-car" viewBox="0 0 120 60" fill="none" stroke="url(#lux-silver-car)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M 9 42 C 10 38 14 36 22 35 C 30 34.2 38 34 45 33.6 C 48 33.4 50 31 54 26.5 C 57 23.5 61 22 67 22 C 76 22 86 24.5 96 29.5 C 101 32 105 33.5 109 35 C 110.5 35.6 111 36.5 110.5 38 L 110 41 C 109.5 42.5 108.5 43 106.5 43 L 97.5 43 C 97.5 35.8 80.5 35.8 80.5 43 L 41 43 C 41 36 25 36 25 43 L 13.5 43 C 11 43 9.5 42.6 9 42 Z"/>
+        <path d="M 51 31 C 54 25.5 60 24 67 24 C 75 24 82 26 87 29" stroke-width="1.8"/>
+        <circle cx="33" cy="45" r="6.5" stroke-width="2.4"/><circle cx="33" cy="45" r="2.6" stroke-width="2.1"/>
+        <circle cx="89" cy="45" r="6.5" stroke-width="2.4"/><circle cx="89" cy="45" r="2.6" stroke-width="2.1"/>
+      </symbol>
+      <symbol id="lux-suv" viewBox="0 0 120 60" fill="none" stroke="url(#lux-silver-suv)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M 10 41 C 10 33 11 29.5 14 29.5 C 18 29 24 28.8 30 28.8 L 35 28.8 C 37 28.6 38.5 27 41 23.5 C 42.5 21 44 19.5 47 19.2 L 52 19 L 93 19 C 96 19 98 20 99 23.5 C 100 28 100.5 33 100.5 38 C 100.5 40.5 99.5 41.5 97.5 41.5 L 98 41.5 C 98 34 82 34 82 41.5 L 40 41.5 C 40 34 24 34 24 41.5 L 13 41.5 C 11 41.5 10 41 10 41 Z"/>
+        <path d="M 39 26 C 41 21.5 44 20.5 48 20.5 L 90 20.5 C 92 20.5 93 21.5 93 24" stroke-width="1.8"/>
+        <path d="M 67 20.5 L 67 26.4" stroke-width="1.8"/>
+        <circle cx="32" cy="44" r="7" stroke-width="2.4"/><circle cx="32" cy="44" r="2.8" stroke-width="2.1"/>
+        <circle cx="90" cy="44" r="7" stroke-width="2.4"/><circle cx="90" cy="44" r="2.8" stroke-width="2.1"/>
+      </symbol>
+      <symbol id="lux-yacht" viewBox="0 0 120 60" fill="none" stroke="url(#lux-silver-yacht)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M 8 32 C 28 33.5 64 35 106 38 L 107 39 C 107 43 104 45.5 98 46 C 70 47 36 47 18 45.5 C 13 44.5 9.5 40 8 32 Z" stroke-width="2.3"/>
+        <path d="M 40 35 C 43 30.5 47 28.5 53 28 L 78 28 C 82 28 84 29.5 85 35" stroke-width="2"/>
+        <path d="M 47 31 L 78 31" stroke-width="1.7"/>
+        <path d="M 79 28 L 82 20.5" stroke-width="1.8"/>
+        <path d="M 22 42.5 L 96 43.5" stroke-width="1.6"/>
+      </symbol>
+      <symbol id="lux-jet" viewBox="0 0 120 60" fill="none" stroke="url(#lux-silver-jet)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M 8 31 C 12 28 20 26.5 30 26 L 92 26.5 C 100 27 106 28.5 112 30 C 108 31.5 104 32.5 96 33 L 30 33.5 C 18 33.5 12 32.5 8 31 Z" stroke-width="2.3"/>
+        <path d="M 86 26.5 L 99 9 C 100 8 101 8 103 8.5 L 102 11 L 94 26.5" stroke-width="2"/>
+        <path d="M 99 10 L 112 8 L 113 9.5 L 100 12 Z" stroke-width="1.9"/>
+        <path d="M 52 32.5 L 78 40 L 84 40 L 60 32.5 Z" stroke-width="2"/>
+        <path d="M 16 27.5 L 22 27 L 21 29 L 16 29 Z" stroke-width="1.7"/>
+        <circle cx="34" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="40" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="46" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="52" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="58" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="64" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="70" cy="29.5" r="0.8" stroke-width="1.5"/><circle cx="76" cy="29.5" r="0.8" stroke-width="1.5"/>
       </symbol>
     </defs>
   </svg>
@@ -5233,7 +5341,14 @@
 
             <!-- progression -->
             <div class="config-progress">
-              <p class="config-stepnum" aria-hidden="true"><span id="config-stepnum">01</span><span class="config-stepnum-sep">/</span>05</p>
+              <div class="config-progress-head">
+                <p class="config-stepnum" aria-live="polite" aria-atomic="true">
+                  <span class="fr">Étape <b class="cfg-cur">1</b> sur 5</span>
+                  <span class="en">Step <b class="cfg-cur">1</b> of 5</span>
+                  <span class="ru">Шаг <b class="cfg-cur">1</b> из 5</span>
+                </p>
+                <p class="config-step-name" id="config-step-name" aria-hidden="true"><span class="fr">Véhicule</span><span class="en">Vehicle</span><span class="ru">Авто</span></p>
+              </div>
               <div class="config-track"><span class="config-fill" id="config-fill"></span></div>
               <div class="config-dots" id="config-dots">
                 <span class="config-dot active"><i>1</i><b class="fr">Véhicule</b><b class="en">Vehicle</b><b class="ru">Авто</b></span>
@@ -5249,19 +5364,19 @@
               <h4 class="config-step-title"><span class="fr">Quel type de véhicule ?</span><span class="en">Which type of vehicle?</span><span class="ru">Какой тип транспорта?</span></h4>
               <div class="config-choices" data-target="vehicule-type">
                 <button type="button" class="config-choice" data-value="Automobile de prestige">
-                  <svg class="cfg-metal" aria-hidden="true"><use href="#ave-car"/></svg>
+                  <svg class="cfg-lux" viewBox="0 0 120 60" aria-hidden="true"><use href="#lux-car"/></svg>
                   <span class="fr">Automobile de prestige</span><span class="en">Prestige automobile</span><span class="ru">Престижный автомобиль</span>
                 </button>
                 <button type="button" class="config-choice" data-value="SUV / 4×4 de luxe">
-                  <svg class="cfg-metal" aria-hidden="true"><use href="#ave-suv"/></svg>
+                  <svg class="cfg-lux" viewBox="0 0 120 60" aria-hidden="true"><use href="#lux-suv"/></svg>
                   <span class="fr">SUV / 4×4 de luxe</span><span class="en">Luxury SUV / 4×4</span><span class="ru">Люкс-внедорожник / 4×4</span>
                 </button>
                 <button type="button" class="config-choice" data-value="Yacht">
-                  <svg class="cfg-metal" aria-hidden="true"><use href="#ave-yacht"/></svg>
+                  <svg class="cfg-lux" viewBox="0 0 120 60" aria-hidden="true"><use href="#lux-yacht"/></svg>
                   <span class="fr">Yacht</span><span class="en">Yacht</span><span class="ru">Яхта</span>
                 </button>
                 <button type="button" class="config-choice" data-value="Jet privé / Aviation">
-                  <svg class="cfg-metal" aria-hidden="true"><use href="#ave-jet"/></svg>
+                  <svg class="cfg-lux" viewBox="0 0 120 60" aria-hidden="true"><use href="#lux-jet"/></svg>
                   <span class="fr">Jet privé / Aviation</span><span class="en">Private jet / Aviation</span><span class="ru">Частный джет / Авиация</span>
                 </button>
               </div>
@@ -5419,6 +5534,33 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               <span class="config-error-text"></span>
             </p>
+
+            <!-- Écran final premium — affiché après validation -->
+            <div class="config-success" id="config-success" role="status" aria-live="polite">
+              <div class="config-success-mark" aria-hidden="true">
+                <svg viewBox="0 0 52 52" fill="none" stroke="var(--cta-hover)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path id="config-check-path" d="M14 27 l8 8 l16 -18"/></svg>
+              </div>
+              <h3 class="config-success-title">
+                <span class="fr">Votre demande privée a été enregistrée.</span>
+                <span class="en">Your private request has been registered.</span>
+                <span class="ru">Ваша частная заявка зарегистрирована.</span>
+              </h3>
+              <p class="config-success-text">
+                <span class="fr">Un conseiller Aqua Vapor Elite vous contactera sous 1 heure.</span>
+                <span class="en">An Aqua Vapor Elite advisor will contact you within 1 hour.</span>
+                <span class="ru">Консультант Aqua Vapor Elite свяжется с вами в течение 1 часа.</span>
+              </p>
+              <div class="config-success-actions">
+                <button type="button" class="btn btn-primary config-wa" id="config-wa">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.34zM12 2a10 10 0 0 0-8.6 15.07L2 22l5.05-1.32A10 10 0 1 0 12 2z"/></svg>
+                  <span class="fr">Envoyer sur WhatsApp</span><span class="en">Send on WhatsApp</span><span class="ru">Отправить в WhatsApp</span>
+                </button>
+                <button type="button" class="btn btn-ghost config-home" id="config-home">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/></svg>
+                  <span class="fr">Retour à l'accueil</span><span class="en">Back to home</span><span class="ru">На главную</span>
+                </button>
+              </div>
+            </div>
 
           </form>
         </div>
@@ -6055,14 +6197,39 @@
       const steps = [...form.querySelectorAll('.config-step')];
       const dots = [...document.querySelectorAll('#config-dots .config-dot')];
       const fill = document.getElementById('config-fill');
+      const stepName = document.getElementById('config-step-name');
+      const STEP_NAMES = [
+        { fr: 'Véhicule', en: 'Vehicle', ru: 'Авто' },
+        { fr: 'Ville', en: 'City', ru: 'Город' },
+        { fr: 'Prestation', en: 'Service', ru: 'Услуга' },
+        { fr: 'Photos', en: 'Photos', ru: 'Фото' },
+        { fr: 'Contact', en: 'Contact', ru: 'Контакт' }
+      ];
       let cur = 0;
-      function showStep(n) {
-        cur = Math.max(0, Math.min(steps.length - 1, n));
-        steps.forEach((s, i) => s.classList.toggle('active', i === cur));
+      function setProgress() {
         dots.forEach((d, i) => { d.classList.toggle('active', i === cur); d.classList.toggle('done', i < cur); });
         if (fill) fill.style.width = ((cur + 1) / steps.length * 100) + '%';
-        const sn = document.getElementById('config-stepnum'); if (sn) sn.textContent = String(cur + 1).padStart(2, '0');
+        form.querySelectorAll('.cfg-cur').forEach(el => el.textContent = (cur + 1));
+        const nm = STEP_NAMES[cur];
+        if (stepName && nm) stepName.innerHTML = '<span class="fr">' + nm.fr + '</span><span class="en">' + nm.en + '</span><span class="ru">' + nm.ru + '</span>';
+      }
+      function showStep(n, dir) {
+        const prev = cur;
+        cur = Math.max(0, Math.min(steps.length - 1, n));
         const eb = document.getElementById('config-error'); if (eb) eb.classList.remove('show');
+        const G = window.gsap;
+        if (prev === cur || !G || prefersReduced) {
+          steps.forEach((s, i) => s.classList.toggle('active', i === cur));
+          setProgress();
+          return;
+        }
+        const outEl = steps[prev], inEl = steps[cur];
+        const d = dir || (cur > prev ? 1 : -1);
+        G.killTweensOf([outEl, inEl]);
+        G.timeline()
+          .to(outEl, { autoAlpha: 0, x: -16 * d, duration: 0.22, ease: 'power1.in' })
+          .add(() => { outEl.classList.remove('active'); G.set(outEl, { clearProps: 'all' }); inEl.classList.add('active'); setProgress(); })
+          .fromTo(inEl, { autoAlpha: 0, x: 20 * d }, { autoAlpha: 1, x: 0, duration: 0.46, ease: 'power2.out', clearProps: 'transform,opacity,visibility' });
       }
       // sélections (type de véhicule + ville)
       form.querySelectorAll('.config-choices, .config-chips').forEach(group => {
@@ -6074,6 +6241,7 @@
             const hidden = document.getElementById(targetId);
             if (hidden) hidden.value = btn.dataset.value;
             group.classList.remove('choices-error', 'chips-error');
+            if (window.gsap && !prefersReduced) window.gsap.fromTo(btn, { scale: 0.97 }, { scale: 1, duration: 0.4, ease: 'back.out(1.7)', clearProps: 'transform' });
           });
         });
       });
@@ -6110,9 +6278,46 @@
         if (ok) clearError(); else if (msg) showError(msg[0], msg[1]);
         return ok;
       }
-      form.querySelectorAll('.config-next').forEach(b => b.addEventListener('click', () => { if (validateStep(cur)) showStep(cur + 1); }));
-      form.querySelectorAll('.config-prev').forEach(b => b.addEventListener('click', () => showStep(cur - 1)));
+      form.querySelectorAll('.config-next').forEach(b => b.addEventListener('click', () => { if (validateStep(cur)) showStep(cur + 1, 1); }));
+      form.querySelectorAll('.config-prev').forEach(b => b.addEventListener('click', () => showStep(cur - 1, -1)));
       showStep(0);
+
+      // ----- Écran final premium -----
+      const successScreen = document.getElementById('config-success');
+      function revealSuccess() {
+        form.classList.add('is-complete');
+        if (!successScreen) return;
+        const G = window.gsap;
+        if (G && !prefersReduced) {
+          const path = document.getElementById('config-check-path');
+          if (path) { const len = path.getTotalLength(); G.set(path, { strokeDasharray: len, strokeDashoffset: len }); G.to(path, { strokeDashoffset: 0, duration: 0.6, delay: 0.2, ease: 'power2.inOut' }); }
+          G.fromTo(successScreen, { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'power2.out', clearProps: 'transform,opacity,visibility' });
+          const mark = successScreen.querySelector('.config-success-mark');
+          if (mark) G.fromTo(mark, { scale: 0.78 }, { scale: 1, duration: 0.6, ease: 'back.out(1.6)', clearProps: 'transform' });
+        }
+        successScreen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      function sendQuote() {
+        const body = window.__quoteBody || '';
+        if (WHATSAPP_NUMBER) {
+          window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(body), '_blank', 'noopener');
+        } else {
+          const subject = encodeURIComponent('Demande de devis — Aqua Vapor Elite');
+          const a = document.createElement('a');
+          a.href = 'mailto:pierre@aquavaporelite.fr?subject=' + subject + '&body=' + encodeURIComponent(body);
+          a.style.display = 'none'; document.body.appendChild(a); a.click(); a.remove();
+        }
+      }
+      const configWa = document.getElementById('config-wa');
+      if (configWa) configWa.addEventListener('click', sendQuote);
+      const configHome = document.getElementById('config-home');
+      if (configHome) configHome.addEventListener('click', () => {
+        form.classList.remove('is-complete');
+        cur = 0; steps.forEach((s, i) => s.classList.toggle('active', i === 0)); setProgress();
+        const hero = document.getElementById('hero');
+        if (window.__lenis && hero) window.__lenis.scrollTo(hero, { offset: 0 });
+        else if (hero) hero.scrollIntoView({ behavior: 'smooth' });
+      });
 
       form.addEventListener('submit', e => {
         e.preventDefault();
@@ -6157,23 +6362,9 @@
              `Ville : ${ville}`, `Adresse : ${val('adresse')}`,
              `Prestation : ${service}`, addonLine, `Date souhaitée : ${val('date')}`, photoLine,
              val('message') ? `Infos : ${val('message')}` : ''];
-        const body = L.filter(Boolean).join('\n');
-        // micro-animation + confirmation AFFICHÉE D'ABORD (avant toute ouverture/navigation)
-        submitBtn.classList.add('is-sent');
-        successMsg.hidden = false;
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        // puis ouverture (synchrone, dans le geste → pas de blocage pop-up)
-        if (WHATSAPP_NUMBER) {
-          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(body)}`, '_blank', 'noopener');
-        } else {
-          // numéro WhatsApp absent → on N'OUVRE PAS un WhatsApp vide ; repli e-mail (clic d'ancre, pas de unload)
-          const subject = encodeURIComponent('Demande de réservation — Aqua Vapor Elite');
-          const a = document.createElement('a');
-          a.href = `mailto:pierre@aquavaporelite.fr?subject=${subject}&body=${encodeURIComponent(body)}`;
-          a.style.display = 'none';
-          document.body.appendChild(a); a.click(); a.remove();
-        }
-        setTimeout(() => { successMsg.hidden = true; submitBtn.classList.remove('is-sent'); }, 6500);
+        window.__quoteBody = L.filter(Boolean).join('\n');
+        // confirmation premium (écran final) — l'envoi se fait via le bouton WhatsApp
+        revealSuccess();
       });
     }
 

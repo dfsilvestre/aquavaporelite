@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="120" height="60" fill="none" stroke-linejoin="round" stroke-linecap="round" shape-rendering="geometricPrecision" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Yacht">
+  <defs>
+    <linearGradient id="lux-silver" gradientUnits="userSpaceOnUse" x1="60" y1="19" x2="60" y2="47">
+      <stop offset="0" stop-color="#FBFCFE"/>
+      <stop offset="0.22" stop-color="#E6EBF1"/>
+      <stop offset="0.44" stop-color="#D8DCE3"/>
+      <stop offset="0.62" stop-color="#AEB8C4"/>
+      <stop offset="0.78" stop-color="#9CA8B6"/>
+      <stop offset="1" stop-color="#CFD7E0"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#lux-silver)" stroke-width="2">
+    <path d="M 8 32 C 28 33.5 64 35 106 38 L 107 39 C 107 43 104 45.5 98 46 C 70 47 36 47 18 45.5 C 13 44.5 9.5 40 8 32 Z" stroke-width="2.3"/>
+    <path d="M 40 35 C 43 30.5 47 28.5 53 28 L 78 28 C 82 28 84 29.5 85 35" stroke-width="2"/>
+    <path d="M 47 31 L 78 31" stroke-width="1.7"/>
+    <path d="M 79 28 L 82 20.5" stroke-width="1.8"/>
+    <path d="M 22 42.5 L 96 43.5" stroke-width="1.6"/>
+  </g>
+</svg>

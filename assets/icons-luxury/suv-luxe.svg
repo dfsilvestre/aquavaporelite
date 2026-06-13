@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="120" height="60" fill="none" stroke-linejoin="round" stroke-linecap="round" shape-rendering="geometricPrecision" preserveAspectRatio="xMidYMid meet" role="img" aria-label="SUV / 4x4 de luxe">
+  <defs>
+    <linearGradient id="lux-silver" gradientUnits="userSpaceOnUse" x1="60" y1="17" x2="60" y2="52">
+      <stop offset="0" stop-color="#FBFCFE"/>
+      <stop offset="0.22" stop-color="#E6EBF1"/>
+      <stop offset="0.44" stop-color="#D8DCE3"/>
+      <stop offset="0.62" stop-color="#AEB8C4"/>
+      <stop offset="0.78" stop-color="#9CA8B6"/>
+      <stop offset="1" stop-color="#CFD7E0"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#lux-silver)" stroke-width="2">
+    <path d="M 10 41 C 10 33 11 29.5 14 29.5 C 18 29 24 28.8 30 28.8 L 35 28.8 C 37 28.6 38.5 27 41 23.5 C 42.5 21 44 19.5 47 19.2 L 52 19 L 93 19 C 96 19 98 20 99 23.5 C 100 28 100.5 33 100.5 38 C 100.5 40.5 99.5 41.5 97.5 41.5 L 98 41.5 C 98 34 82 34 82 41.5 L 40 41.5 C 40 34 24 34 24 41.5 L 13 41.5 C 11 41.5 10 41 10 41 Z"/>
+    <path d="M 39 26 C 41 21.5 44 20.5 48 20.5 L 90 20.5 C 92 20.5 93 21.5 93 24" stroke-width="1.8"/>
+    <path d="M 67 20.5 L 67 26.4" stroke-width="1.8"/>
+    <circle cx="32" cy="44" r="7" stroke-width="2.4"/><circle cx="32" cy="44" r="2.8" stroke-width="2.1"/>
+    <circle cx="90" cy="44" r="7" stroke-width="2.4"/><circle cx="90" cy="44" r="2.8" stroke-width="2.1"/>
+  </g>
+</svg>
