@@ -3723,6 +3723,61 @@
       .config-fill::after { animation: none; }
       .config-choice::before { transition: none; }
     }
+
+    /* =====================================================
+       PAGE D'ACCUEIL — MOMENTS DE MARQUE PREMIUM
+       Pourquoi Aqua Vapor Elite · Garanties · Témoignage signature.
+       Surcouche éditoriale : aucun impact SEO / configurateur / pages villes.
+    ===================================================== */
+    /* — Pourquoi Aqua Vapor Elite — */
+    .why { position: relative; overflow: hidden; }
+    .why::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 64% 46% at 50% 0%, rgba(26,144,217,0.07), transparent 62%); }
+    .why .container { position: relative; }
+    .why-head { text-align: center; max-width: 640px; margin: 0 auto 54px; }
+    .why-head .section-sub { margin-left: auto; margin-right: auto; color: var(--silver-light); }
+    .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .why-pillar { position: relative; padding: 30px 30px 32px; border: 1px solid rgba(150,178,210,0.12); border-radius: var(--radius); background: rgba(255,255,255,0.015); overflow: hidden; transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out), transform 0.4s var(--ease-out); }
+    .why-pillar::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, var(--cta), transparent 70%); transform: scaleX(0); transform-origin: left; transition: transform 0.55s var(--ease-out); }
+    @media (hover: hover) and (min-width: 769px) {
+      .why-pillar:hover { border-color: rgba(26,144,217,0.4); background: rgba(26,144,217,0.04); transform: translateY(-4px); }
+      .why-pillar:hover::before { transform: scaleX(1); }
+    }
+    .why-num { display: block; font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.14em; color: var(--cta); opacity: 0.85; margin-bottom: 18px; font-variant-numeric: tabular-nums; }
+    .why-pillar h3 { font-family: var(--font-head); font-size: 1.32rem; font-weight: 600; color: #fff; letter-spacing: -0.01em; margin: 0 0 11px; }
+    .why-pillar p { font-size: 0.9rem; line-height: 1.72; color: var(--muted); margin: 0; max-width: 44ch; }
+    .why-cta { text-align: center; margin-top: 42px; }
+
+    /* — Garanties premium — */
+    .guar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 6px; }
+    .guar-card { padding: 30px 22px; border: 1px solid rgba(150,178,210,0.12); border-radius: var(--radius); background: rgba(255,255,255,0.015); text-align: center; transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out), transform 0.4s var(--ease-out); }
+    @media (hover: hover) and (min-width: 769px) {
+      .guar-card:hover { border-color: rgba(26,144,217,0.4); background: rgba(26,144,217,0.04); transform: translateY(-4px); }
+    }
+    .guar-icon { width: 54px; height: 54px; margin: 0 auto 18px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(26,144,217,0.08); border: 1px solid rgba(26,144,217,0.18); }
+    .guar-icon svg { width: 24px; height: 24px; color: var(--cta); }
+    .guar-card h3 { font-family: var(--font-head); font-size: 1.12rem; font-weight: 600; color: #fff; margin: 0 0 9px; letter-spacing: -0.005em; }
+    .guar-card p { font-size: 0.82rem; line-height: 1.62; color: var(--muted); margin: 0; }
+    .guar-foot { text-align: center; margin-top: 40px; }
+    .guar-note { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.02em; margin: 0 0 18px; }
+
+    /* — Témoignage signature (au-dessus du marquee) — */
+    .tmoin-featured { max-width: 780px; margin: 4px auto 46px; text-align: center; padding: 0 16px; }
+    .tmoin-quote { font-family: var(--font-head); font-size: clamp(1.45rem, 2.7vw, 2.05rem); line-height: 1.42; font-style: italic; font-weight: 500; color: #fff; margin: 0 0 20px; }
+    .tmoin-quote::before { content: '\201C'; display: block; font-family: var(--font-head); font-size: 3.4rem; line-height: 0.5; color: var(--cta); opacity: 0.5; margin-bottom: 14px; }
+    .tmoin-attr { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver-light); margin: 0; }
+    .tmoin-attr span { color: var(--muted); }
+
+    /* — Responsive / conversion mobile — */
+    @media (max-width: 760px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .guar-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-head { margin-bottom: 40px; }
+    }
+    @media (max-width: 460px) {
+      .guar-grid { grid-template-columns: 1fr; }
+      .why-cta .btn, .guar-foot .btn { display: flex; width: 100%; justify-content: center; }
+      .why-pillar { padding: 26px 22px 28px; }
+    }
   </style>
 </head>
 <body>
@@ -4843,6 +4898,62 @@
     </div>
   </div>
 
+  <!-- ===================== POURQUOI AQUA VAPOR ELITE ===================== -->
+  <section class="section why" id="pourquoi" aria-labelledby="why-title">
+    <div class="container">
+      <div class="why-head" data-animate>
+        <p class="section-label fr">Pourquoi Aqua Vapor Elite</p>
+        <p class="section-label en">Why Aqua Vapor Elite</p>
+        <p class="section-label ru">Почему Aqua Vapor Elite</p>
+        <h2 class="section-title" id="why-title">
+          <span class="fr">L'exigence,<br/>en <em>signature</em></span>
+          <span class="en">Exacting standards,<br/>as a <em>signature</em></span>
+          <span class="ru">Безупречность<br/>как <em>подпись</em></span>
+        </h2>
+        <p class="section-sub fr">Nous ne lavons pas des véhicules. Nous préservons des pièces d'exception — discrètement, chez vous, pour une clientèle qui ne transige jamais sur le détail.</p>
+        <p class="section-sub en">We don't wash vehicles. We preserve exceptional pieces — discreetly, at your door, for a clientele that never compromises on detail.</p>
+        <p class="section-sub ru">Мы не моем автомобили. Мы сохраняем исключительные вещи — сдержанно, с выездом, для клиентов, которые не идут на компромиссы в деталях.</p>
+      </div>
+
+      <div class="why-grid">
+        <article class="why-pillar" data-animate>
+          <span class="why-num" aria-hidden="true">01</span>
+          <h3 class="fr">Discrétion absolue</h3><h3 class="en">Absolute discretion</h3><h3 class="ru">Полная конфиденциальность</h3>
+          <p class="fr">Une intervention privée, sans intermédiaire ni publicité. Un interlocuteur unique, une équipe choisie, une confidentialité contractuelle sur simple demande.</p>
+          <p class="en">A private service, with no intermediary and no publicity. One point of contact, a hand-picked team, contractual confidentiality on request.</p>
+          <p class="ru">Частный сервис, без посредников и огласки. Один контакт, проверенная команда, конфиденциальность по договору — по запросу.</p>
+        </article>
+        <article class="why-pillar" data-animate>
+          <span class="why-num" aria-hidden="true">02</span>
+          <h3 class="fr">Maîtrise du prestige</h3><h3 class="en">Mastery of prestige</h3><h3 class="ru">Мастерство премиум-класса</h3>
+          <p class="fr">Carbone, cuirs pleine fleur, vernis multicouches : chaque matière a son protocole. Vapeur sèche maîtrisée, produits certifiés, gestes formés sur véhicules d'exception.</p>
+          <p class="en">Carbon, full-grain leather, multi-layer paint: every material has its protocol. Controlled dry steam, certified products, expertise honed on exceptional vehicles.</p>
+          <p class="ru">Карбон, кожа полного дубления, многослойный лак — у каждого материала свой протокол. Контролируемый сухой пар, сертифицированные средства, выверенные движения.</p>
+        </article>
+        <article class="why-pillar" data-animate>
+          <span class="why-num" aria-hidden="true">03</span>
+          <h3 class="fr">Conciergerie mobile</h3><h3 class="en">Mobile concierge</h3><h3 class="ru">Выездной консьерж</h3>
+          <p class="fr">Villa, port, hangar : nous venons à vous, sur le créneau de votre choix. Aucun déplacement, aucun point d'eau requis — votre véhicule ne quitte jamais sa place.</p>
+          <p class="en">Villa, marina, hangar: we come to you, at the time you choose. No travel, no water point required — your vehicle never leaves its spot.</p>
+          <p class="ru">Вилла, порт, ангар — мы приезжаем к вам в удобное время. Без поездок и без точки воды: ваш автомобиль остаётся на месте.</p>
+        </article>
+        <article class="why-pillar" data-animate>
+          <span class="why-num" aria-hidden="true">04</span>
+          <h3 class="fr">Sur recommandation</h3><h3 class="en">By referral</h3><h3 class="ru">По рекомендации</h3>
+          <p class="fr">Une clientèle choisie, des conciergeries partenaires, un suivi personnalisé saison après saison. On nous recommande — et l'on nous garde.</p>
+          <p class="en">A select clientele, partner concierge services, a personal relationship season after season. We are recommended — and we are kept.</p>
+          <p class="ru">Избранная клиентура, партнёрские консьерж-службы, личное сопровождение сезон за сезоном. Нас рекомендуют — и остаются с нами.</p>
+        </article>
+      </div>
+
+      <div class="why-cta" data-animate>
+        <a href="#reservation" class="btn btn-primary">
+          <span class="fr">Demander un devis privé</span><span class="en">Request a private quote</span><span class="ru">Запросить частный расчёт</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===================== TARIFS ===================== -->
   <section class="section section-alt" id="tarifs" aria-labelledby="tarifs-title">
     <div class="container">
@@ -5052,6 +5163,15 @@
         <span class="stars-count en">· 80+ clients · Monaco · Cannes · Saint-Tropez</span>
         <span class="stars-count ru">· 80+ клиентов · Монако · Канны · Сен-Тропе</span>
       </div>
+
+      <figure class="tmoin-featured" data-animate>
+        <blockquote class="tmoin-quote fr">Le seul prestataire à qui je confie mes voitures sans les sortir du garage. Discret, ponctuel, irréprochable — saison après saison.</blockquote>
+        <blockquote class="tmoin-quote en">The only service I trust with my cars without taking them out of the garage. Discreet, punctual, flawless — season after season.</blockquote>
+        <blockquote class="tmoin-quote ru">Единственные, кому я доверяю свои автомобили, не выгоняя их из гаража. Сдержанно, пунктуально, безупречно — сезон за сезоном.</blockquote>
+        <figcaption class="tmoin-attr fr">Client privé <span>· Monaco · fidèle depuis deux ans</span></figcaption>
+        <figcaption class="tmoin-attr en">Private client <span>· Monaco · two years and counting</span></figcaption>
+        <figcaption class="tmoin-attr ru">Частный клиент <span>· Монако · два года вместе</span></figcaption>
+      </figure>
 
       <div class="reviews-marquee">
        <div class="reviews-track" id="reviews-track">
@@ -5278,6 +5398,70 @@
           <summary><span class="fr">Comment obtenir un devis ?</span><span class="en">How do I get a quote?</span><span class="ru">Как получить расчёт?</span><span class="faq-plus" aria-hidden="true"></span></summary>
           <div class="faq-answer"><p class="fr">Via notre configurateur ci-dessous, en moins de deux minutes. Vous recevez une réponse personnalisée sous une heure, par e-mail ou WhatsApp, selon votre préférence.</p><p class="en">Through our configurator below, in under two minutes. You receive a personalised reply within the hour, by e-mail or WhatsApp, as you prefer.</p><p class="ru">Через конфигуратор ниже, менее чем за две минуты. Вы получите персональный ответ в течение часа — по e-mail или WhatsApp, на ваш выбор.</p></div>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== GARANTIES PREMIUM ===================== -->
+  <section class="section guarantees" id="garanties" aria-labelledby="garanties-title">
+    <div class="container">
+      <div class="section-header" data-animate style="text-align:center; max-width:600px; margin-left:auto; margin-right:auto;">
+        <p class="section-label fr">Nos garanties</p>
+        <p class="section-label en">Our guarantees</p>
+        <p class="section-label ru">Наши гарантии</p>
+        <h2 class="section-title" id="garanties-title">
+          <span class="fr">Le luxe,<br/>sans <em>mauvaise surprise</em></span>
+          <span class="en">Luxury,<br/>with <em>no surprises</em></span>
+          <span class="ru">Роскошь<br/>без <em>сюрпризов</em></span>
+        </h2>
+      </div>
+
+      <div class="guar-grid">
+        <div class="guar-card" data-animate>
+          <div class="guar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3 class="fr">Satisfaction garantie</h3><h3 class="en">Satisfaction guaranteed</h3><h3 class="ru">Гарантия результата</h3>
+          <p class="fr">Un détail vous échappe ? Nous le reprenons sur place, immédiatement. Vous validez, ou nous recommençons.</p>
+          <p class="en">A detail isn't right? We redo it on the spot, immediately. You approve — or we start again.</p>
+          <p class="ru">Что-то не так? Исправим на месте, сразу же. Вы одобряете — или мы переделываем.</p>
+        </div>
+        <div class="guar-card" data-animate>
+          <div class="guar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+          </div>
+          <h3 class="fr">Ponctualité au créneau</h3><h3 class="en">On-time, every time</h3><h3 class="ru">Точность по времени</h3>
+          <p class="fr">Le rendez-vous est tenu à la minute. Votre temps a la même valeur que vos véhicules.</p>
+          <p class="en">Your appointment is kept to the minute. Your time matters as much as your vehicles.</p>
+          <p class="ru">Встреча — минута в минуту. Ваше время ценно не меньше ваших автомобилей.</p>
+        </div>
+        <div class="guar-card" data-animate>
+          <div class="guar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><line x1="4.5" y1="4" x2="19.5" y2="20"/></svg>
+          </div>
+          <h3 class="fr">Zéro eau · zéro dégât</h3><h3 class="en">No water · no damage</h3><h3 class="ru">Без воды · без ущерба</h3>
+          <p class="fr">Vapeur sèche maîtrisée : aucun ruissellement au sol, aucune rayure, aucune surface fragilisée.</p>
+          <p class="en">Controlled dry steam: no water on the floor, no scratches, no weakened surfaces.</p>
+          <p class="ru">Контролируемый сухой пар: ни воды на полу, ни царапин, ни повреждённых поверхностей.</p>
+        </div>
+        <div class="guar-card" data-animate>
+          <div class="guar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+          </div>
+          <h3 class="fr">Confidentialité garantie</h3><h3 class="en">Guaranteed confidentiality</h3><h3 class="ru">Гарантия конфиденциальности</h3>
+          <p class="fr">Vos coordonnées, vos véhicules, vos adresses : protégés. Aucune donnée partagée, aucune photo publiée sans accord.</p>
+          <p class="en">Your details, your vehicles, your addresses: protected. No data shared, no photo published without consent.</p>
+          <p class="ru">Ваши контакты, автомобили и адреса под защитой. Никаких передач данных и публикаций фото без согласия.</p>
+        </div>
+      </div>
+
+      <div class="guar-foot" data-animate>
+        <p class="guar-note fr">Chaque intervention est assurée et confidentielle. Devis personnalisé sous 1 heure, sans engagement.</p>
+        <p class="guar-note en">Every service is insured and confidential. Personal quote within 1 hour, with no obligation.</p>
+        <p class="guar-note ru">Каждая услуга застрахована и конфиденциальна. Персональный расчёт в течение 1 часа, без обязательств.</p>
+        <a href="#reservation" class="btn btn-primary">
+          <span class="fr">Réserver mon créneau privé</span><span class="en">Book my private slot</span><span class="ru">Забронировать частный слот</span>
+        </a>
       </div>
     </div>
   </section>
