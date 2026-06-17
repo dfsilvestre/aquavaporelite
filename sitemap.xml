@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.aquavaporelite.fr/</loc>
-    <lastmod>2026-06-09</lastmod>
+    <loc>https://www.aquavaporelite.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.aquavaporelite.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aquavaporelite.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.aquavaporelite.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aquavaporelite.com/"/>
+    <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.aquavaporelite.fr/cannes/</loc>
-    <lastmod>2026-06-09</lastmod>
+    <loc>https://www.aquavaporelite.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.aquavaporelite.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aquavaporelite.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.aquavaporelite.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aquavaporelite.com/"/>
+    <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.aquavaporelite.fr/antibes/</loc>
-    <lastmod>2026-06-09</lastmod>
+    <loc>https://www.aquavaporelite.com/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.aquavaporelite.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.aquavaporelite.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.aquavaporelite.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.aquavaporelite.com/"/>
+    <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://www.aquavaporelite.fr/nice/</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.aquavaporelite.fr/monaco/</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.aquavaporelite.fr/saint-tropez/</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://www.aquavaporelite.com/cannes/</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.aquavaporelite.com/antibes/</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.aquavaporelite.com/nice/</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.aquavaporelite.com/monaco/</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.aquavaporelite.com/saint-tropez/</loc><lastmod>2026-06-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

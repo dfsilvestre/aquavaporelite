@@ -1,0 +1,22 @@
+{
+  "source": {
+    "title": "Detailing Automobile Vapeur à Mougins & Côte d'Azur | Aqua Vapor Elite",
+    "desc": "Detailing automobile vapeur premium à domicile sur la Côte d'Azur — Cannes, Nice, Monaco, Saint-Tropez. Service privé mobile. Yacht & aviation sur devis."
+  },
+  "locales": [
+    {
+      "code": "en",
+      "lang": "en",
+      "ogLocale": "en_US",
+      "title": "Steam Auto Detailing — French Riviera | Aqua Vapor Elite",
+      "desc": "Premium steam auto detailing at your door on the French Riviera — Cannes, Nice, Monaco, Saint-Tropez. Private mobile service. Yacht & aviation on quote."
+    },
+    {
+      "code": "ru",
+      "lang": "ru",
+      "ogLocale": "ru_RU",
+      "title": "Паровой детейлинг авто — Лазурный Берег | Aqua Vapor Elite",
+      "desc": "Премиальный паровой детейлинг авто с выездом на Лазурном Берегу — Канны, Ницца, Монако, Сен-Тропе. Частный выездной сервис. Яхты и авиация по запросу."
+    }
+  ]
+}

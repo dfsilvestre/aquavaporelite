@@ -1,0 +1,22 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "aquavaporelite.fr" }],
+      "destination": "https://www.aquavaporelite.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.aquavaporelite.fr" }],
+      "destination": "https://www.aquavaporelite.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "aquavaporelite.com" }],
+      "destination": "https://www.aquavaporelite.com/:path*",
+      "permanent": true
+    }
+  ]
+}
